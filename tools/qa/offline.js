@@ -33,7 +33,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await sleep(3000);
   const st = await page.evaluate(() => ({
     title: document.title, ticker: (document.querySelector('#ticker') || {}).innerText,
-    wxCached: !!localStorage.getItem('ghcamp26:wx'), tl: document.querySelectorAll('.it').length,
+    wxCached: !!localStorage.getItem('ghcamp26:wx'), tl: document.querySelectorAll('#tl .ev').length,
     fonts: [...document.fonts].filter(f => f.status === 'loaded').map(f => f.family).slice(0, 6)
   })).catch(e => 'eval failed ' + e.message);
   console.log(JSON.stringify(st));

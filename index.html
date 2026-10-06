@@ -568,7 +568,7 @@ const TRIP = {
 <script>
 (function(){
 'use strict';
-var BUILD = '10/6 14:30';
+var BUILD = '10/6 15:10';
 var NS = 'ghcamp26:';
 var TZ = 'Asia/Seoul';
 
@@ -920,10 +920,12 @@ document.addEventListener('click', function(e){
   if ((b = t.closest('[data-day]'))) { curDay = +b.getAttribute('data-day'); renderDays(); renderTL(); renderWx(); return; }
   if ((b = t.closest('#ticker'))) { var g = b.getAttribute('data-go'); if (g === 'now') goNow(); else show(g); return; }
   if ((b = t.closest('#themeBtn'))) {
-    var cur = load('theme', 'system'), nx = cur === 'system' ? 'light' : cur === 'light' ? 'dark' : 'system';
-    save('theme', nx);
-    if (nx === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', nx);
-    toast(nx === 'system' ? '테마: 폰 설정 따라가기' : nx === 'light' ? '테마: 밝게' : '테마: 어둡게'); return;
+    /* 누를 때마다 지금 보이는 것의 반대로 바뀐다. 폰 설정과 같은 쪽으로 돌아오면 '폰 따라가기'로 저장 (예전엔 폰이 밝을 때 첫 누름이 "밝게"라 화면이 그대로였음) */
+    var sysDark = !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches), cur = load('theme', 'system');
+    var eff = cur === 'light' || cur === 'dark' ? cur : (sysDark ? 'dark' : 'light'), nx = eff === 'dark' ? 'light' : 'dark', follow = nx === (sysDark ? 'dark' : 'light');
+    save('theme', follow ? 'system' : nx);
+    if (follow) document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', nx);
+    toast((nx === 'light' ? '테마: 밝게' : '테마: 어둡게') + (follow ? ' (폰 설정 따라가기)' : '')); return;
   }
   if ((b = t.closest('[data-ckreset]'))) {
     var id = b.getAttribute('data-ckreset'), done = load('shop', {}), sec = b.closest('.ck');

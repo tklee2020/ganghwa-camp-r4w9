@@ -16,7 +16,7 @@ module.exports = { parallel: 1, scenarios: [
   { name: 'games', steps: [
     { wait: 600, eval: `document.querySelector('#dock [data-view=play]').click(); (function(){ var seen={}, out=[]; document.querySelectorAll('[data-mis]').forEach(function(b){ b.click(); var t=document.querySelector('#misOut b').textContent; out.push(t); seen[t]=1; b.click(); }); return 'missions unique=' + (Object.keys(seen).length===out.length) + ' n=' + out.length; })()` },
     { eval: `(function(){ document.querySelector('#liarStart').click(); var liars=0, words={}; for (var i=0;i<6;i++){ document.querySelector('#liarNext').click(); var t=document.querySelector('#liarOut').innerText; if (/라이어/.test(t)) liars++; else words[t.split(String.fromCharCode(10))[0]]=1; document.querySelector('#liarNext').click(); } return 'liars=' + liars + ' words=' + Object.keys(words).length + ' revealShown=' + !document.querySelector('#liarReveal').hidden; })()` },
-    { eval: `(function(){ document.querySelector('#teamBtn').click(); return document.querySelector('#teams').innerText.replace(/\n/g,' '); })()` },
+    { eval: `(function(){ document.querySelector('#teamBtn').click(); return document.querySelector('#teams').innerText.split(String.fromCharCode(10)).join(' '); })()` },
     { eval: `document.querySelector('#telBtn').click(); document.querySelector('#penBtn').click(); document.querySelector('#telOut').textContent + ' | ' + document.querySelector('#penOut').textContent` },
     { shot: 'f-games.png', full: true }
   ] }

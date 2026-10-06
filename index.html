@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>강화 베이비 캠프</title>
+<meta name="description" content="마니산 베이비즈 1박 2일 — 강화도 페밀리하우스 (2026.10.10–10.11) 일정·장소·장보기·놀거리·정산">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1F3A2E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="강화 캠프">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* 화면: 위에 고정 헤더(제목·D-day·지금/다음) + 탭 5개(일정·장소·장보기·놀거리·정산) + 아래 고정 메뉴 */
+:root{
+  --bg:#F6F1E7; --surface:#FFFFFF; --surface-2:#F1EADC; --ink:#22281F; --muted:#5E6657; --line:#DED5C3;
+  --edge:#22281F; --drop:#22281F; --scrim:#11140F99;
+  --hud:#1F3A2E; --hud-2:#2C5040; --on-hud:#F5F2EA; --hud-muted:#BFD0C4;
+  --ember:#E0612B; --on-ember:#FFFFFF; --ember-tint:#FCE3D6;
+  --pine:#2F6B4F; --on-pine:#FFFFFF;
+  --sun:#F2B630; --on-sun:#22281F; --sun-tint:#FFF1C9;
+  --blue:#2C6DB5;
+  --k-food:#FCE2C9; --k-food-ink:#8A4210;
+  --k-cafe:#EBDDCB; --k-cafe-ink:#6B4526;
+  --k-shop:#D8EED9; --k-shop-ink:#25603A;
+  --k-move:#D7E5F7; --k-move-ink:#1F4C8A;
+  --k-stay:#E6DDF5; --k-stay-ink:#4F3591;
+  --k-kid:#F9D9E6; --k-kid-ink:#8A2F59;
+  --k-bbq:#F9D5CC; --k-bbq-ink:#94301A;
+  --k-play:#FBEBB0; --k-play-ink:#6A4B00;
+  --k-photo:#D3EFEE; --k-photo-ink:#1D5E5B;
+  --k-prep:#E7E7E2; --k-prep-ink:#474B42;
+  --f1:#E0612B; --f2:#2C6DB5; --f3:#2F8A4E;
+  --check-bg:#FFF0C7; --check-fg:#6B4A00; --check-line:#C9971C;
+  --ok-bg:#D7F0DF; --ok-fg:#1C5A34; --no-bg:#F8DCD6; --no-fg:#8A2A1F;
+  --f-game:"Jua","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --gutter:16px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121611; --surface:#1B211A; --surface-2:#242C22; --ink:#EEF0E8; --muted:#A9B2A2; --line:#34402F;
+    --edge:#55654F; --drop:#050704; --scrim:#000000B3;
+    --hud:#0B140F; --hud-2:#1C3127; --on-hud:#F2F0E8; --hud-muted:#9FB5A6;
+    --ember:#FF8556; --on-ember:#2A0D02; --ember-tint:#3E2015;
+    --pine:#6CC59A; --on-pine:#06180F;
+    --sun:#FFC94D; --on-sun:#22281F; --sun-tint:#3A3114;
+    --blue:#8AB6FF;
+    --k-food:#41291A; --k-food-ink:#FFC08F; --k-cafe:#3A2C1F; --k-cafe-ink:#E8C9A6;
+    --k-shop:#183522; --k-shop-ink:#9EE0B1; --k-move:#1B2C45; --k-move-ink:#AECBFF;
+    --k-stay:#2D2443; --k-stay-ink:#CDB8FF; --k-kid:#43223A; --k-kid-ink:#F7B6D2;
+    --k-bbq:#45201A; --k-bbq-ink:#FFB4A0; --k-play:#3D3112; --k-play-ink:#FFD978;
+    --k-photo:#163B3A; --k-photo-ink:#9EE3DF; --k-prep:#2A2D27; --k-prep-ink:#C9CCC2;
+    --f1:#FF8556; --f2:#8AB6FF; --f3:#7FD69A;
+    --check-bg:#3A2F10; --check-fg:#F5D27A; --check-line:#9C7A22;
+    --ok-bg:#173322; --ok-fg:#9AD9B0; --no-bg:#3C1F1B; --no-fg:#F4A99D;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121611; --surface:#1B211A; --surface-2:#242C22; --ink:#EEF0E8; --muted:#A9B2A2; --line:#34402F;
+  --edge:#55654F; --drop:#050704; --scrim:#000000B3;
+  --hud:#0B140F; --hud-2:#1C3127; --on-hud:#F2F0E8; --hud-muted:#9FB5A6;
+  --ember:#FF8556; --on-ember:#2A0D02; --ember-tint:#3E2015;
+  --pine:#6CC59A; --on-pine:#06180F;
+  --sun:#FFC94D; --on-sun:#22281F; --sun-tint:#3A3114;
+  --blue:#8AB6FF;
+  --k-food:#41291A; --k-food-ink:#FFC08F; --k-cafe:#3A2C1F; --k-cafe-ink:#E8C9A6;
+  --k-shop:#183522; --k-shop-ink:#9EE0B1; --k-move:#1B2C45; --k-move-ink:#AECBFF;
+  --k-stay:#2D2443; --k-stay-ink:#CDB8FF; --k-kid:#43223A; --k-kid-ink:#F7B6D2;
+  --k-bbq:#45201A; --k-bbq-ink:#FFB4A0; --k-play:#3D3112; --k-play-ink:#FFD978;
+  --k-photo:#163B3A; --k-photo-ink:#9EE3DF; --k-prep:#2A2D27; --k-prep-ink:#C9CCC2;
+  --f1:#FF8556; --f2:#8AB6FF; --f3:#7FD69A;
+  --check-bg:#3A2F10; --check-fg:#F5D27A; --check-line:#9C7A22;
+  --ok-bg:#173322; --ok-fg:#9AD9B0; --no-bg:#3C1F1B; --no-fg:#F4A99D;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:150px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3,h4{margin:0;line-height:1.3}
+p{margin:0}
+a{color:var(--blue)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:100%;max-width:760px;margin-inline:auto;padding-inline:var(--gutter)}
+b,strong{font-weight:700}
+
+/* ---------- 버튼 ---------- */
+.gbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 14px;border:2px solid var(--edge);border-radius:13px;background:var(--surface);color:var(--ink);box-shadow:0 3px 0 var(--drop);font-family:var(--f-game);font-size:15px;line-height:1.1;text-decoration:none;cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:manipulation;transition:transform .12s}
+.gbtn:active{transform:translateY(2px)}
+.gbtn--ember{background:var(--ember);color:var(--on-ember)}
+.gbtn--pine{background:var(--pine);color:var(--on-pine)}
+.gbtn--sun{background:var(--sun);color:var(--on-sun)}
+.gbtn--sm{min-height:38px;padding:0 11px;font-size:14px;border-radius:11px;box-shadow:0 2px 0 var(--drop)}
+.gbtn[disabled]{opacity:.5;cursor:default}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---------- 헤더 ---------- */
+.hud{position:sticky;top:0;z-index:40;background:var(--hud);color:var(--on-hud);padding-top:env(safe-area-inset-top,0px);box-shadow:0 3px 0 var(--drop)}
+.hud__row{display:flex;align-items:center;gap:10px;max-width:760px;margin-inline:auto;padding:10px var(--gutter) 6px}
+.logo{font-family:var(--f-game);font-weight:400;font-size:22px;letter-spacing:.2px;line-height:1.1;flex:1;min-width:0}
+.logo small{display:block;font-family:var(--f-body);font-size:12px;color:var(--hud-muted);letter-spacing:0;margin-top:2px}
+.pill{display:inline-flex;align-items:center;min-height:30px;padding:0 10px;border-radius:999px;background:var(--sun);color:var(--on-sun);font-family:var(--f-game);font-size:15px;white-space:nowrap}
+.hudbtn{width:40px;height:40px;border-radius:12px;border:2px solid var(--hud-2);background:var(--hud-2);color:var(--on-hud);display:grid;place-items:center;font-size:18px;cursor:pointer;flex-shrink:0}
+.ticker{display:block;width:100%;max-width:760px;margin-inline:auto;padding:0 var(--gutter) 10px;border:0;background:none;color:var(--on-hud);text-align:left;font-size:14px;line-height:1.45;cursor:pointer}
+.ticker b{color:var(--sun);font-weight:700}
+.ticker .tk-sub{display:block;color:var(--hud-muted);font-size:13px}
+
+/* ---------- 공통 화면 ---------- */
+.view{padding-top:16px}
+.vhead{margin:4px 0 14px}
+.eyebrow{font-family:var(--f-game);font-size:13px;color:var(--ember);letter-spacing:.5px}
+.vhead h2{font-family:var(--f-game);font-weight:400;font-size:26px}
+.vhead__sub{color:var(--muted);font-size:14px;margin-top:4px}
+.card{background:var(--surface);border:2px solid var(--edge);border-radius:16px;box-shadow:0 3px 0 var(--drop);padding:14px 14px 13px;margin-bottom:14px}
+.card h3{font-family:var(--f-game);font-weight:400;font-size:19px;margin-bottom:6px}
+.card p+p{margin-top:6px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+ul.dots{margin:6px 0 0;padding-left:20px}
+ul.dots li+li{margin-top:3px}
+.qbadge{display:inline-block;margin:0 2px;padding:0 6px;border-radius:6px;background:var(--check-bg);color:var(--check-fg);border:1px dashed var(--check-line);font-size:12px;font-weight:700;line-height:1.5;vertical-align:1px;white-space:nowrap}
+.warn{background:var(--ember-tint);border-radius:12px;padding:9px 11px;margin-top:8px;font-size:14px}
+.warn b{color:var(--ember)}
+
+/* ---------- 일정 ---------- */
+.days{display:flex;gap:8px;margin-bottom:12px}
+.days button{flex:1;min-height:52px;border:2px solid var(--edge);border-radius:14px;background:var(--surface);box-shadow:0 3px 0 var(--drop);font-family:var(--f-game);font-size:17px;cursor:pointer;line-height:1.15}
+.days button small{display:block;font-family:var(--f-body);font-size:12px;color:var(--muted)}
+.days button[aria-pressed="true"]{background:var(--hud);color:var(--on-hud)}
+.days button[aria-pressed="true"] small{color:var(--hud-muted)}
+.wx{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;background:var(--surface-2);border-radius:12px;padding:8px 12px;margin-bottom:14px;font-size:14px}
+.wx b{font-family:var(--f-game);font-weight:400;font-size:17px}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:62px;top:8px;bottom:8px;width:3px;border-radius:2px;background:var(--line)}
+.it{position:relative;display:grid;grid-template-columns:54px 1fr;gap:0 18px;margin-bottom:12px}
+.it__t{font-family:var(--f-game);font-size:17px;line-height:1.1;text-align:right;padding-top:13px}
+.it__t small{display:block;font-family:var(--f-body);font-size:11px;color:var(--muted);margin-top:3px}
+.it__dot{position:absolute;left:57px;top:15px;width:13px;height:13px;border-radius:50%;background:var(--surface);border:3px solid var(--edge);z-index:1}
+.it__c{background:var(--surface);border:2px solid var(--edge);border-radius:15px;box-shadow:0 3px 0 var(--drop);padding:11px 12px 12px;min-width:0}
+.it__k{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;margin-bottom:4px}
+.it__c h3{font-family:var(--f-game);font-weight:400;font-size:18px;line-height:1.3}
+.it__m{margin-top:5px;font-size:14px}
+.it__m li+li{margin-top:2px}
+.it__alt{margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--surface-2);font-size:13.5px}
+.it__alt b{color:var(--pine)}
+.it__acts{margin-top:9px}
+.it.is-past .it__c{opacity:.62}
+.it.is-now .it__c{border-color:var(--ember);box-shadow:0 3px 0 var(--ember)}
+.it.is-now .it__dot{background:var(--ember);border-color:var(--ember)}
+.nowtag{display:inline-block;margin-left:6px;padding:0 7px;border-radius:999px;background:var(--ember);color:var(--on-ember);font-size:11px;font-weight:700;vertical-align:2px}
+.k-food .it__k{background:var(--k-food);color:var(--k-food-ink)}
+.k-cafe .it__k{background:var(--k-cafe);color:var(--k-cafe-ink)}
+.k-shop .it__k{background:var(--k-shop);color:var(--k-shop-ink)}
+.k-move .it__k{background:var(--k-move);color:var(--k-move-ink)}
+.k-stay .it__k{background:var(--k-stay);color:var(--k-stay-ink)}
+.k-kid .it__k{background:var(--k-kid);color:var(--k-kid-ink)}
+.k-bbq .it__k{background:var(--k-bbq);color:var(--k-bbq-ink)}
+.k-play .it__k{background:var(--k-play);color:var(--k-play-ink)}
+.k-photo .it__k{background:var(--k-photo);color:var(--k-photo-ink)}
+.k-prep .it__k{background:var(--k-prep);color:var(--k-prep-ink)}
+.crew{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fam{border-radius:12px;padding:8px 9px;background:var(--surface-2);border-top:5px solid var(--fc,var(--line));font-size:13px;line-height:1.4;min-width:0}
+.fam b{display:block;font-family:var(--f-game);font-weight:400;font-size:16px}
+.fam .kid{display:block;margin-top:3px}
+
+/* ---------- 장소 ---------- */
+.pl{display:grid;gap:10px}
+.pl__c{background:var(--surface);border:2px solid var(--edge);border-radius:15px;box-shadow:0 3px 0 var(--drop);padding:11px 12px}
+.pl__c h3{font-family:var(--f-game);font-weight:400;font-size:18px}
+.pl__c h3 small{font-family:var(--f-body);font-size:12px;color:var(--muted);margin-left:4px}
+.pl__meta{font-size:13.5px;margin-top:3px}
+.pl__meta div+div{margin-top:1px}
+.pl__note{font-size:13.5px;margin-top:5px;color:var(--muted)}
+.pl__c .btnrow{margin-top:9px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:0 7px;border-radius:999px;background:var(--surface-2);color:var(--muted);margin-left:4px;vertical-align:2px}
+.tag--b{background:var(--k-move);color:var(--k-move-ink)}
+.tag--no{background:var(--no-bg);color:var(--no-fg)}
+.sec{font-family:var(--f-game);font-weight:400;font-size:20px;margin:20px 0 10px}
+.sos{border-color:var(--ember)}
+.sos a.big{font-family:var(--f-game);font-size:18px;text-decoration:none}
+
+/* ---------- 체크리스트 ---------- */
+.ck{background:var(--surface);border:2px solid var(--edge);border-radius:16px;box-shadow:0 3px 0 var(--drop);margin-bottom:14px;overflow:hidden}
+.ck__h{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--surface-2);border-bottom:2px solid var(--edge)}
+.ck__h h3{flex:1;font-family:var(--f-game);font-weight:400;font-size:19px;line-height:1.25}
+.ck__h h3 small{display:block;font-family:var(--f-body);font-size:12.5px;color:var(--muted)}
+.ck__n{font-family:var(--f-game);font-size:16px;white-space:nowrap}
+.ck__bar{height:6px;background:var(--line)}
+.ck__bar i{display:block;height:100%;width:0;background:var(--pine);transition:width .25s}
+.ck__g{padding:8px 14px 4px}
+.ck__g h4{font-size:13px;color:var(--muted);font-weight:700;margin:6px 0 2px}
+.ck__i{display:flex;align-items:flex-start;gap:10px;padding:7px 0;cursor:pointer;border-bottom:1px solid var(--line)}
+.ck__g .ck__i:last-child{border-bottom:0}
+.ck__i input{appearance:none;-webkit-appearance:none;flex-shrink:0;width:24px;height:24px;margin:0;border:2px solid var(--edge);border-radius:7px;background:var(--surface);display:grid;place-items:center;cursor:pointer}
+.ck__i input:checked{background:var(--pine);border-color:var(--pine)}
+.ck__i input:checked::after{content:"";width:6px;height:11px;border:solid var(--on-pine);border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.ck__i span{font-size:14.5px;line-height:1.45;padding-top:1px}
+.ck__i input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.ck__f{display:flex;justify-content:flex-end;gap:8px;padding:6px 14px 12px}
+.ck__note{padding:10px 14px 0;font-size:13.5px;color:var(--muted)}
+
+/* ---------- 놀거리 ---------- */
+.game h3 .num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--sun);color:var(--on-sun);font-size:15px;margin-right:6px;vertical-align:1px}
+.draw{margin-top:10px;padding:14px;border-radius:14px;background:var(--surface-2);border:2px dashed var(--line);text-align:center;min-height:64px;display:grid;place-items:center;font-family:var(--f-game);font-size:20px;line-height:1.35}
+.draw.on{border-style:solid;border-color:var(--ember);background:var(--ember-tint)}
+.names{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.names button{min-height:38px;padding:0 12px;border-radius:999px;border:2px solid var(--edge);background:var(--surface);font-family:var(--f-game);font-size:15px;cursor:pointer}
+.names button[aria-pressed="true"]{background:var(--hud);color:var(--on-hud)}
+.names button.done{opacity:.45}
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.teams div{border-radius:12px;padding:10px;background:var(--surface-2);font-size:15px;text-align:center}
+.teams b{display:block;font-family:var(--f-game);font-weight:400;font-size:17px}
+.chipsel{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chipsel button{min-height:34px;padding:0 11px;border-radius:999px;border:2px solid var(--line);background:var(--surface);font-size:14px;cursor:pointer}
+.chipsel button[aria-pressed="true"]{border-color:var(--edge);background:var(--sun);color:var(--on-sun);font-weight:700}
+.idea{display:grid;grid-template-columns:34px 1fr;gap:4px 10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.idea:last-child{border-bottom:0}
+.idea i{font-style:normal;font-size:24px;line-height:1.2}
+.idea b{display:block}
+
+/* ---------- 정산 ---------- */
+.form{display:grid;gap:10px}
+.field{width:100%;min-height:46px;padding:0 12px;border:2px solid var(--edge);border-radius:12px;background:var(--surface);font-size:16px}
+.famsel{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.famsel button{min-height:44px;border-radius:12px;border:2px solid var(--line);background:var(--surface);font-family:var(--f-game);font-size:15px;cursor:pointer}
+.famsel button[aria-pressed="true"]{border-color:var(--edge);background:var(--fc);color:#fff}
+.quick{display:flex;flex-wrap:wrap;gap:6px}
+.quick button{min-height:32px;padding:0 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface-2);font-size:13px;cursor:pointer}
+.ledger{list-style:none;margin:0;padding:0}
+.ledger li{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.ledger li:last-child{border-bottom:0}
+.who{display:inline-block;padding:1px 8px;border-radius:999px;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.del{width:34px;height:34px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.sum{display:grid;gap:6px;font-size:15px}
+.sum .row{display:flex;justify-content:space-between;gap:10px}
+.xfer{margin-top:10px;padding:12px;border-radius:12px;background:var(--ok-bg);color:var(--ok-fg);font-family:var(--f-game);font-size:18px;line-height:1.5}
+.empty{color:var(--muted);font-size:14px;padding:6px 0}
+
+/* ---------- 아래 메뉴 ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--surface);border-top:2px solid var(--edge);padding-bottom:env(safe-area-inset-bottom,0px)}
+.dock__in{display:grid;grid-template-columns:repeat(5,1fr);max-width:760px;margin-inline:auto}
+.dock button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:62px;border:0;background:none;font-family:var(--f-game);font-size:13.5px;color:var(--muted);cursor:pointer;position:relative}
+.dock button .ico{font-size:21px;line-height:1.1}
+.dock button[aria-current="page"]{color:var(--ink)}
+.dock button[aria-current="page"]::before{content:"";position:absolute;top:0;left:22%;right:22%;height:4px;border-radius:0 0 4px 4px;background:var(--ember)}
+.dock__n{position:absolute;top:6px;right:calc(50% - 26px);min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--ember);color:var(--on-ember);font-family:var(--f-body);font-size:11px;font-weight:700;line-height:18px}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);z-index:60;max-width:calc(100% - 32px);padding:10px 16px;border-radius:12px;background:var(--hud);color:var(--on-hud);font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{margin:18px 0 8px;font-size:12.5px;color:var(--muted);text-align:center}
+.qlist li{font-size:13.5px}
+
+@media (min-width:600px){
+  .logo{font-size:26px}
+  .pl{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+@media print{.hud,.dock,.toast,.btnrow,.it__acts{display:none!important}body{padding:0}}
+</style>
+<script>
+(function(){var m=null;try{m=JSON.parse(localStorage.getItem('ghcamp26:theme'));}catch(e){}
+if(m==='light'||m==='dark')document.documentElement.setAttribute('data-theme',m);})();
+</script>
+</head>
+<body>
+<header class="hud" id="hud">
+  <div class="hud__row">
+    <h1 class="logo">강화 베이비 캠프<small id="subT">마니산 베이비즈 1박 2일</small></h1>
+    <span class="pill" id="ddayPill">D-?</span>
+    <button class="hudbtn" id="themeBtn" type="button" aria-label="화면 테마 바꾸기">🌗</button>
+  </div>
+  <button class="ticker" id="ticker" type="button" aria-label="지금 할 일로 이동"></button>
+</header>
+
+<main id="main">
+  <!-- ============ 일정 ============ -->
+  <section class="view wrap" id="v-plan" data-view="plan" aria-labelledby="planT">
+    <h2 class="sr" id="planT">일정</h2>
+    <div class="days" id="days" role="group" aria-label="날짜 고르기"></div>
+    <div class="wx" id="wx" hidden></div>
+    <ol class="tl" id="tl"></ol>
+    <div class="card" id="crewCard"></div>
+  </section>
+
+  <!-- ============ 장소·안내 ============ -->
+  <section class="view wrap" id="v-places" data-view="places" hidden aria-labelledby="placesT">
+    <header class="vhead"><p class="eyebrow">PLACES · INFO</p><h2 id="placesT">장소 · 안내</h2>
+      <p class="vhead__sub">버튼을 누르면 카카오맵·네이버 지도에서 바로 찾아요. 길 찾기는 지도 앱에서 하세요.</p></header>
+    <div id="stayCard"></div>
+    <div id="sosCard"></div>
+    <div id="placeList"></div>
+    <div id="infoCards"></div>
+  </section>
+
+  <!-- ============ 장보기 ============ -->
+  <section class="view wrap" id="v-shop" data-view="shop" hidden aria-labelledby="shopT">
+    <header class="vhead"><p class="eyebrow">CHECKLIST</p><h2 id="shopT">할 일 · 장보기</h2>
+      <p class="vhead__sub">누르면 체크돼요. 이 휴대폰에만 저장돼요(새로고침해도 남아요).</p></header>
+    <div id="shopLists"></div>
+  </section>
+
+  <!-- ============ 놀거리 ============ -->
+  <section class="view wrap" id="v-play" data-view="play" hidden aria-labelledby="playT">
+    <header class="vhead"><p class="eyebrow">NIGHT GAMES · PHOTO</p><h2 id="playT">놀거리</h2>
+      <p class="vhead__sub">아가들 재운 뒤 어른 게임, 그리고 다음 날 아침 단체사진.</p></header>
+    <div id="games"></div>
+    <div id="photo"></div>
+  </section>
+
+  <!-- ============ 정산 ============ -->
+  <section class="view wrap" id="v-split" data-view="split" hidden aria-labelledby="splitT">
+    <header class="vhead"><p class="eyebrow">SPLIT · 1/N</p><h2 id="splitT">3가족 정산</h2>
+      <p class="vhead__sub">전부 세 가족이 똑같이 나눠요. 이 휴대폰에만 저장되니 <b>한 사람 폰에 모아서</b> 적어 주세요.</p></header>
+    <div class="card">
+      <h3>낸 돈 적기</h3>
+      <form class="form" id="splitForm" autocomplete="off">
+        <div class="famsel" id="payer" role="group" aria-label="낸 가족"></div>
+        <div class="quick" id="quick" role="group" aria-label="자주 쓰는 항목"></div>
+        <input class="field" id="sWhat" placeholder="무엇 (예: 코스트코)" maxlength="40" aria-label="무엇에 썼나요">
+        <input class="field" id="sAmt" inputmode="numeric" placeholder="금액 (원)" aria-label="금액(원)">
+        <button class="gbtn gbtn--ember" type="submit">+ 추가</button>
+      </form>
+    </div>
+    <div class="card"><h3>적은 내역</h3><ul class="ledger" id="ledger"></ul></div>
+    <div class="card" id="result"></div>
+  </section>
+</main>
+
+<nav class="dock" aria-label="메뉴">
+  <div class="dock__in" id="dock">
+    <button type="button" data-view="plan" aria-current="page"><span class="ico" aria-hidden="true">🗓️</span>일정</button>
+    <button type="button" data-view="places"><span class="ico" aria-hidden="true">📍</span>장소</button>
+    <button type="button" data-view="shop"><span class="ico" aria-hidden="true">🛒</span>장보기<span class="dock__n" id="dockShop" hidden></span></button>
+    <button type="button" data-view="play"><span class="ico" aria-hidden="true">🎲</span>놀거리</button>
+    <button type="button" data-view="split"><span class="ico" aria-hidden="true">💸</span>정산</button>
+  </div>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="wrap">이 페이지는 자바스크립트를 켜야 보여요.</p></noscript>
+
+<script>
+/* ================================================================
+   TRIP — 여기만 고치면 페이지가 바뀝니다.
+   - 문자열 안의 {?} 는 "확인 필요" 배지가 되고, 장소 탭 맨 아래 목록에 자동으로 모입니다.
+     출처(전화·공식 안내)로 확인한 값만 {?} 를 지웁니다.
+   - **굵게** 를 쓸 수 있어요.
+   - 사람 이름·인원은 families 에서만 읽습니다(HTML·로직에 이름을 박지 않음).
+   ================================================================ */
+const TRIP = {
+  title: '강화 베이비 캠프',
+  sub: '마니산 베이비즈 1박 2일',
+  start: '2026-10-10', end: '2026-10-11',
+  endISO: '2026-10-11T14:00:00+09:00',
+  host: 'yj',
+  families: [
+    { id: 'yj', name: '용준네', couple: ['송이', '태균'], kid: '용준', mo: 12, color: 'var(--f1)' },
+    { id: 'wj', name: '우진네', couple: ['은지', '동훈'], kid: '우진', mo: 26, color: 'var(--f2)' },
+    { id: 'dh', name: '도현네', couple: ['현아', '엄선'], kid: '도현', mo: 22, color: 'var(--f3)' }
+  ],
+  stay: {
+    name: '페밀리하우스 (에어비앤비)', area: '인천 강화군 화도면 상방리',
+    addr: '정확한 주소는 에어비앤비 예약 메시지에서 확인 {?}',
+    q: '강화군 화도면 상방리', url: 'https://www.airbnb.co.kr/rooms/19656335',
+    in: '10/10(토) 15:00', out: '10/11(일) 11:00',
+    facts: ['2층 독채 · 침실 3 (퀸 2 + 요·이불 3) · 욕실 3 · 최대 9명', '트램폴린 · 그네 · 미끄럼틀 · 보드게임 · 10인 식탁', '바베큐 2만 원 (그릴·석쇠·토치·착화제·장갑 제공, **숯은 각자**) · 자쿠지 3만 원(선택)', '실내에서 냄새 강한 요리는 제한 — 고기는 밖에서', '근처 마트가 일찍 닫아요 — 장은 미리']
+  },
+  days: [
+    { date: '2026-10-10', label: '토', title: '모여서 아점 → 카페 → 장보기 → 바베큐', items: [
+      { t: '07:30', k: 'prep', title: '출발 준비 — 아이스박스부터', memo: ['고기·아이스팩을 아이스박스에 (아점·카페 동안 4~5시간 차에 실려요)', '아기 가방: 이유식·반찬 2끼, 기저귀, 해열제, 여벌'] },
+      { t: '08:30', k: 'move', title: '각자 출발 → **초지대교**로 건너기', memo: ['세 집 모두 강화 남부까지 평소 1시간 20분~1시간 40분 {?}', '연휴 둘째 날 — 강화로 들어가는 길은 9시~14시에 막혀요', '숙소가 남쪽이라 **강화대교 말고 초지대교**'] },
+      { t: '10:15', k: 'move', approx: true, title: '초지대교 통과 → 단톡에 "건넜음"', memo: ['**10:30까지 못 건널 가족이 있으면 B안** — 단톡에 바로 공지'], alt: '**B안** 아점 강화섬쌀밥집(초지대교 바로 옆, 9시 오픈) → 카페 아이나 → 하나로마트 길상본점 → 체크인' },
+      { t: '10:30', end: '11:50', k: 'food', place: 'toga', title: '아점 · 토가 (순두부)', memo: ['룸 4개(대형 2)·아기의자 · 9시 오픈, 점심엔 웨이팅 — 일찍 들어가요', '아기는 **고춧가루 없는 순두부새우젓찌개**', '9명 룸 예약 {?} · 순두부는 14시까지'] },
+      { t: '12:00', end: '14:00', k: 'cafe', place: 'doredore', title: '카페 · 도레도레', memo: ['아이 출입 OK, 넓은 정원 — 낮잠 시간이라 유모차 산책', '**같은 정원의 마호가니는 노키즈존** — 입구 헷갈리지 않기', '돗자리·공놀이 금지 · 기저귀 교환대 없을 수 있어요(차에서)', '토요일 영업시간 {?}'], alt: '**B안** 아이나 카페 (초지리, 400평, "아이 동반 환영")' },
+      { t: '14:15', k: 'shop', place: 'hanaroHwado', title: '장보기 · 하나로마트 화도점', memo: ['채소·쌈·얼음만 (나머지는 코스트코에서)', '토요일 마감 시각·얼음 판매 {?}'], alt: '**닫혀 있으면** 하나로마트 강화남부 길상본점 (08:00~21:00, 연중무휴)' },
+      { t: '15:00', k: 'stay', place: 'stay', title: '체크인 · 고기는 바로 냉장고로', memo: ['바베큐 사용료 2만 원 · 침실 3개 → 가족마다 한 방 (퀸 2 · 요 이불 3)', '아가들 낮잠 덜 잤으면 여기서 보충'] },
+      { t: '15:20', k: 'kid', title: '아가들 마당 놀이 · 트램폴린·미끄럼틀·그네', memo: ['트램폴린은 **한 번에 한 명 + 어른 한 명** — 12개월과 두 살 형들은 몸무게 차이가 커요'] },
+      { t: '16:30', k: 'bbq', title: '숯 피우기 (2명)', memo: ['착화제 + 토치, 숯이 하얗게 될 때까지 20~30분 (브리켓은 더 걸려요)', '고구마·옥수수는 호일에 싸서 **지금** 숯 가장자리에 (40분)'] },
+      { t: '17:15', k: 'kid', title: '아가들 저녁 먼저', memo: ['이유식·반찬은 전자레인지로 데우기', '**부채살 첫 판은 간 없이** 굽고, 탄 데 떼고 잘게', '용준이는 이유식 위주 + 고기·고구마는 맛보기', '우진·도현: 고기·고구마·옥수수·순한 반찬'] },
+      { t: '18:00', k: 'bbq', title: '어른 바베큐 🍖', memo: ['해가 6시쯤 져요 — 금방 쌀쌀해지니 겉옷', '아기 식탁은 그릴에서 멀리'] },
+      { t: '19:30', k: 'kid', title: '목욕 · 재우기', memo: ['욕실이 3개 — 세 가족 동시에', '자는 방은 2층 / 어른은 1층처럼 층을 나누면 편해요 {?}', '휴대폰 영상통화를 베이비 모니터로'] },
+      { t: '21:00', k: 'play', title: '어른 타임 · 술 & 게임', memo: ['놀거리 탭: 몰래 미션 공개 · 부부 텔레파시 · 라이어 · 비어퐁', '남은 숯으로 불멍 (불은 꼭 끄고 자기)'] }
+    ] },
+    { date: '2026-10-11', label: '일', title: '단체사진 → 정리 → 일찍 귀가', items: [
+      { t: '08:00', k: 'food', title: '해장 라면 + 아가들 아침', memo: ['아가들 아침은 챙겨 온 2끼째'] },
+      { t: '09:30', k: 'photo', title: '📸 단체사진 (아가들 단체복)', memo: ['아침 먹고 기분 좋을 때 · 놀거리 탭의 사진 순서대로', '휴대폰 거치대 + 타이머'] },
+      { t: '10:15', k: 'stay', title: '정리 · 쓰레기 · 숯 불씨 확인', memo: ['냉장고 비우기 · 남은 술·고기는 나눠 가져가기'] },
+      { t: '11:00', k: 'move', title: '체크아웃 → **13시 전에 강화 빠져나가기**', memo: ['연휴 마지막 날 — 오후에 나가는 길이 막혀요', '돌아가는 차에서 아가들 낮잠'], alt: '**여유 있으면** 후포항 바다 보고 20분 (주차 무료·화장실 있음)' }
+    ] }
+  ],
+  places: {
+    stay: { name: '페밀리하우스', kind: '숙소', q: '강화군 화도면 상방리', note: '정확한 주소는 예약 메시지 {?}' },
+    toga: { name: '토가', kind: '아점', area: '화도면 흥왕리 · 해안남로 1912', q: '강화 토가 순두부', hours: '09:00~19:00, 수요일 휴무 · 순두부 14시까지 {?}', note: '룸 4개·아기의자·넓은 주차장. 전화번호는 네이버 지도에서 {?}', drive: '숙소에서 15~20분' },
+    doredore: { name: '도레도레 강화점', kind: '카페', area: '화도면 흥왕리 · 해안남로1844번길 19', q: '도레도레 강화점', tel: '032-937-1415', hours: '토요일 영업시간 출처마다 다름 {?}', note: '아이 출입 OK·유아의자·정원. 같은 정원 **마호가니는 노키즈**', drive: '숙소에서 15~20분' },
+    hanaroHwado: { name: '하나로마트 화도점', kind: '마트', area: '화도면 · 마니산로 729', q: '하나로마트 화도점', tel: '032-937-1181', hours: '토요일 마감 출처마다 다름(17~19시) · 일요일 휴무일 수 있음 {?}', note: '숙소에서 가장 가까운 마트. 얼음 판매 {?}' },
+    hanaroGilsang: { name: '하나로마트 강화남부 길상본점', kind: '마트', area: '길상면 · 길상로 298', q: '하나로마트 강화남부농협 길상', tel: '032-937-4184', hours: '08:00~21:00 연중무휴 (동절기 20시일 수 있음 {?})', note: '화도점이 닫혔을 때 · 강화 남부에서 제일 큰 하나로' },
+    ssalbap: { name: '강화섬쌀밥집', kind: '아점', b: true, area: '길상면 초지리 · 해안남로 17', q: '강화섬쌀밥집', tel: '032-937-5989', hours: '09:00~20:30, 수요일 휴무', note: '초지대교 건너자마자 · 아기의자·넓은 주차 · 한우떡갈비정식', drive: '숙소에서 22~28분' },
+    aina: { name: '아이나 카페', kind: '카페', b: true, area: '길상면 초지리 · 해안동로 116-12', q: '아이나 카페 강화', tel: '0507-1325-1326', hours: '10:00~20:30', note: '약 400평 · 아기의자 · "아이 동반 환영"' },
+    cu: { name: 'CU 강화마니산점', kind: '편의점', area: '화도면 · 마니산로 567', q: 'CU 강화마니산점', tel: '032-937-1009', hours: '24시간 여부 {?}', note: '밤에 얼음·음료 보충' },
+    pharm: { name: '화도약국', kind: '약국', area: '화도면 · 마니산로 728 (화도 하나로 맞은편)', q: '화도약국 강화', tel: '032-937-0777', hours: '일요일 영업 {?}', note: '화도면 유일 약국' },
+    hupo: { name: '후포항 (선수포구)', kind: '바다', area: '화도면 내리', q: '후포항 강화', hours: '상시', note: '체크아웃 후 20분 바다 구경 · 주차 무료 · 화장실' }
+  },
+  sos: {
+    title: '아가 아플 때',
+    lines: [
+      '**응급실: 비에스종합병원** (강화읍, 강화 유일 지정 응급의료기관)',
+      '강화에는 **토요일 오후·일요일에 여는 소아과가 없어요** — 해열제·체온계는 꼭 챙기기',
+      '열·구토가 심하면 119 (응급의료 상담도 돼요) · 일요일 문 연 약국은 응급의료포털 e-gen',
+      '김포 쪽 소아과(주말 09~18시): 김포아이제일병원 031-8083-7575 · 히즈메디병원 1588-0223 {?}'
+    ],
+    calls: [['119', '119'], ['비에스종합병원', '032-290-0001'], ['강화병원 응급실', '032-930-8119'], ['보건복지상담 129', '129']],
+    links: [['🌐 문 연 약국·병원 (e-gen)', 'https://www.e-gen.or.kr/']]
+  },
+  shop: [
+    { id: 'todo', title: '📋 출발 전 할 일', sub: '오늘(10/6)~토요일 아침', groups: [
+      { items: [
+        ['t1', '10/7(수) 코스트코 장보기 — 영수증 사진은 정산 탭에'],
+        ['t2', '토가에 전화 — 10/10 10:30 어른 6·아기 3 룸 예약, 순두부 몇 시까지'],
+        ['t3', '도레도레(032-937-1415) — 10/10 영업시간'],
+        ['t4', '하나로 화도점(032-937-1181) — 토요일 마감·얼음 판매'],
+        ['t5', '호스트에게 — 정확한 주소, 보드게임 종류, 자쿠지 아기 사용·온도, 집게·가위'],
+        ['t6', '아가 단체복 주문 (금요일까지 도착하는 것으로)'],
+        ['t7', '단톡방에 이 페이지 링크 + 홈 화면에 추가'],
+        ['t8', '10/9 밤 — 아이스팩 얼리기, 냉동한 고기는 냉장실로'],
+        ['t9', '10/10 아침 — 고기·아이스팩 아이스박스로, 08:30 출발']
+      ] }
+    ] },
+    { id: 'costco', title: '🛒 코스트코', sub: '10/7(수) · 어른 6(꽤 마심) + 아기 3 · 저녁 1번 + 아침 1번', note: '고기는 **소비기한 10/10 이후** 팩으로. 아니면 산 날 냉동 → 10/9 밤 냉장 해동.', groups: [
+      { name: '고기 (합계 2.5~3kg)', items: [
+        ['c1', '돼지 목살 또는 삼겹 1팩 (~1.5kg)'],
+        ['c2', '소고기 부채살 또는 척아이롤 1팩 (~1.2~1.5kg) — 아기 몫은 부드러운 부채살'],
+        ['c3', '소시지 1팩'],
+        ['c4', '(선택) 냉동 새우 1봉 — 아기가 처음 먹는 거면 아기는 X']
+      ] },
+      { name: '아기 공용', items: [
+        ['c5', '고구마 · 옥수수 (호일 숯불 구이)'],
+        ['c6', '바나나 · 아기 치즈 · 흰 우유'],
+        ['c7', '무조미 김 · 계란']
+      ] },
+      { name: '아침 · 야식 · 곁들임', items: [
+        ['c8', '라면 멀티팩 (+짜장라면) · 햇반 1박스 · 김치'],
+        ['c9', '쌈장 · 명이나물 등 장아찌 · 굵은 소금 {?숙소 비치}']
+      ] },
+      { name: '술 · 음료', items: [
+        ['c10', '맥주 24캔 1박스'],
+        ['c11', '소주 ~12병 (코스트코에 없으면 당일 하나로) {?}'],
+        ['c12', '하이볼 — 위스키 1병 + 토닉/진저에일 + 레몬'],
+        ['c13', '생수 2L 1박스 · 탄산음료']
+      ] },
+      { name: '안주', items: [
+        ['c14', '과일 1~2종 · 마른안주 · 과자·견과']
+      ] },
+      { name: '숯 · 소모품 · 게임', items: [
+        ['c15', '**숯 1봉** (참숯이 연기 덜 남 · 브리켓은 불붙는 데 더 걸림) {?재고·용량}'],
+        ['c16', '일회용 접시·컵·수저·나무젓가락'],
+        ['c17', '키친타월 · 물티슈 · 호일 · 지퍼백 · 큰 쓰레기봉투'],
+        ['c18', '아이스팩 (집에 아이스박스 없으면 하나)'],
+        ['c19', '종이컵 1줄 (비어퐁)'],
+        ['c20', '(선택) 아동복 코너 — 같은 디자인 3벌 있으면 단체복 해결']
+      ] }
+    ] },
+    { id: 'daiso', title: '🧷 다이소 (게임 준비물)', sub: '아무나 한 명', groups: [
+      { items: [
+        ['d1', '탁구공 6개 (비어퐁)'],
+        ['d2', '포스트잇 · 네임펜 (텔레파시·스파이더맨 과녁)'],
+        ['d3', '(단체복 꾸미기) 다리미 알파벳·숫자 패치 {?}']
+      ] }
+    ] },
+    { id: 'day', title: '🥬 당일 장보기', sub: '10/10(토) 14:15 · 하나로 화도점 (닫혔으면 길상본점)', groups: [
+      { items: [
+        ['m1', '쌈채소 · 깻잎'],
+        ['m2', '마늘 · 고추 · 양파 · 버섯 · 파채'],
+        ['m3', '얼음 2~3봉 {?}'],
+        ['m4', '모자란 술']
+      ] }
+    ] },
+    { id: 'fam', title: '👶 가족마다 챙길 것', sub: '세 가족 각자', groups: [
+      { items: [
+        ['f1', '아기 밥·반찬 2끼 (토 저녁 + 일 아침) · 분유/우유 · 빨대컵'],
+        ['f2', '아기 수저 · 턱받이 · 식판'],
+        ['f3', '기저귀 · 물티슈 · 잠옷 · 여벌 2벌'],
+        ['f4', '애착 이불·인형 (낯선 데서 재우기)'],
+        ['f5', '해열제 · 체온계 · 상비약'],
+        ['f6', '유모차 · 겉옷 (저녁 바베큐 쌀쌀)'],
+        ['f7', '아이스박스 (고기 실은 집)'],
+        ['f8', '단체복 · 휴대폰 거치대']
+      ] }
+    ] }
+  ],
+  games: {
+    missions: [
+      '누군가가 나에게 "진짜?"를 세 번 말하게 하기',
+      '부탁하지 않고 다른 사람이 내 잔을 채우게 하기',
+      '대화 중에 "마니산"을 자연스럽게 세 번 말하기',
+      '서로 다른 두 사람과 하이파이브하기',
+      '누군가에게서 "고마워"를 세 번 듣기',
+      '다른 집 육아 꿀팁을 하나 물어보고 진지하게 메모하는 척하기',
+      '누군가가 내 이름을 다섯 번 부르게 하기',
+      '건배 제의를 내가 두 번 하기',
+      '다른 사람 휴대폰으로 사진 한 장 찍어 주기',
+      '누군가가 내 말투를 따라 하게 만들기',
+      '누군가가 나에게 물 한 잔 가져다주게 하기',
+      '대화에 아는 노래 제목 세 개를 자연스럽게 섞기'
+    ],
+    telepathy: [
+      '처음 만난 장소는?', '첫 데이트 메뉴는?', '배우자가 제일 싫어하는 집안일은?', '우리 아기가 처음 한 말(또는 소리)은?',
+      '배우자의 최애 술은?', '배우자가 스트레스 받으면 하는 행동은?', '배우자의 잠버릇은?', '육아하면서 배우자가 제일 잘하는 것은?',
+      '배우자의 최애 야식은?', '연애 때 서로 부르던 별명은?', '배우자가 지금 제일 받고 싶은 선물은?', '아기 이름 후보 중 탈락한 이름은?',
+      '배우자 휴대폰 배경화면은?', '배우자가 노래방에서 꼭 부르는 노래는?', '둘이 처음 같이 간 여행지는?', '배우자가 제일 아끼는 물건은?',
+      '아기는 누구를 더 닮았다고 생각해?', '먼저 고백한 사람은?', '배우자가 제일 무서워하는 것은?', '10년 뒤 살고 싶은 곳은?',
+      '배우자의 MBTI는?', '혼자 하루가 생기면 배우자가 제일 먼저 할 일은?', '결혼식 날 가장 기억나는 장면은?', '배우자가 제일 자주 하는 말은?'
+    ],
+    penalties: [
+      '원샷 🍺', '배우자와 러브샷', '애교 한 번', '성대모사 하나', '내일 아침 라면 담당', '설거지 담당', '쓰레기 버리기 담당',
+      '노래 한 소절', '지목한 사람 잔 채우기', '오른쪽 사람 30초 칭찬하기', '다음 벌칙 면제권 🎟️', '지목한 사람이 원샷'
+    ],
+    liar: {
+      '음식': ['삼겹살', '짜장면', '떡볶이', '김치찌개', '초밥', '치킨', '냉면', '순두부', '꽃게탕', '라면'],
+      '육아템': ['젖병', '기저귀', '유모차', '아기띠', '쪽쪽이', '물티슈', '턱받이', '카시트', '범퍼침대', '바운서'],
+      '여행지': ['제주도', '부산', '강릉', '경주', '전주', '여수', '속초', '도쿄', '오사카', '다낭'],
+      '동물': ['기린', '펭귄', '코끼리', '판다', '고양이', '강아지', '사자', '토끼', '하마', '거북이'],
+      '직업': ['소방관', '의사', '요리사', '유치원 선생님', '경찰', '가수', '택배 기사', '개발자', '미용사', '파일럿']
+    }
+  },
+  photo: {
+    outfits: [
+      ['👕', '같은 색 맨투맨·후드 + 등에 이름 (추천)', '기성품 3벌 + 다리미 글자 패치로 이름·번호. 팀 이름 "마니산 베이비즈". 코스트코 아동복에 같은 디자인이 있으면 바로 해결.'],
+      ['⚾', '아기 야구 유니폼', '가을야구 시즌 — 응원팀 아기 유니폼, 등번호는 생일 순서 1·2·3.'],
+      ['🎃', '할로윈 코스튬', '10월이라 공룡·호박·꿀벌 우주복이 싸고 많아요. 사진 찍을 10분만.'],
+      ['🤍', '돈 안 드는 패밀리룩', '어른 6명 흰 티 + 청바지, 아가들만 위 옷 하나. 사진이 제일 깔끔해요.']
+    ],
+    sizeNote: '사이즈는 대략 용준 80 · 도현 90 · 우진 90~100호. 평소 사이즈를 서로 확인해요. 이름 인쇄 맞춤 제작은 시간이 모자라요.',
+    shots: [
+      ['p1', '9명 전체 (정원, 아침 햇살 등지지 않게)'],
+      ['p2', '아가 셋 트램폴린·미끄럼틀 위'],
+      ['p3', '아가 셋 뒷모습 — 등 이름 보이게'],
+      ['p4', '가족별 3컷 (서로 찍어 주기)'],
+      ['p5', '어른 6명 (어젯밤 건배 사진도 OK)'],
+      ['p6', '(선택) 용준이 첫돌(10/2) 기념 미니 케이크 한 컷']
+    ]
+  },
+  splitQuick: [['숙소비', 0], ['코스트코', 0], ['바베큐 사용료', 20000], ['자쿠지', 30000], ['아점', 0], ['카페', 0], ['당일 장보기', 0], ['편의점', 0]],
+  lat: 37.62, lon: 126.42,
+  footer: '조사 2026-10-06 (다이닝코드·테이블링·강화군청·블로그·기사). 영업시간은 바뀔 수 있어요 — 확인 필요 배지는 전화로 확인한 뒤 지웁니다.'
+};
+</script>
+<script>
+(function(){
+'use strict';
+var BUILD = '10/6 18:00';
+var NS = 'ghcamp26:';
+var TZ = 'Asia/Seoul';
+
+/* ---------- 작은 도구 ---------- */
+function $(s, r){ return (r || document).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+function load(k, d){ try { var v = localStorage.getItem(NS + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
+function save(k, v){ try { localStorage.setItem(NS + k, JSON.stringify(v)); } catch (e) {} }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+/* {?} → 확인 필요 배지, {?메모} → 배지에 메모, **굵게** */
+function rich(s){
+  return esc(s)
+    .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
+    .replace(/\{\?([^}]*)\}/g, function(m, note){ return '<span class="qbadge" title="확인 필요">확인 필요' + (note ? ' · ' + note : '') + '</span>'; });
+}
+function plain(s){ return String(s).replace(/\*\*/g, '').replace(/\s*\{\?([^}]*)\}/g, function(m, n){ return n ? ' (' + n + ')' : ''; }); }
+function won(n){ return (Math.round(n) || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'; }
+var toastT;
+function toast(msg){ var t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove('on'); }, 2400); }
+function kstDate(ms){
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(ms)); }
+  catch (e) { var d = new Date(ms + 9 * 3600000); return d.toISOString().slice(0, 10); }
+}
+function at(date, t){ return Date.parse(date + 'T' + t + ':00+09:00'); }
+function dayDiff(a, b){ return Math.round((Date.parse(b + 'T00:00:00Z') - Date.parse(a + 'T00:00:00Z')) / 86400000); }
+function fam(id){ for (var i = 0; i < TRIP.families.length; i++) if (TRIP.families[i].id === id) return TRIP.families[i]; return TRIP.families[0]; }
+function people(){ var a = []; TRIP.families.forEach(function(f){ f.couple.forEach(function(n){ a.push(n); }); }); return a; }
+function kakao(q){ return 'https://map.kakao.com/link/search/' + encodeURIComponent(q); }
+function naver(q){ return 'https://map.naver.com/p/search/' + encodeURIComponent(q); }
+function mapBtns(p){
+  var h = '<a class="gbtn gbtn--sm" href="' + kakao(p.q) + '" target="_blank" rel="noopener">카카오맵</a>' +
+          '<a class="gbtn gbtn--sm" href="' + naver(p.q) + '" target="_blank" rel="noopener">네이버 지도</a>';
+  if (p.tel) h += '<a class="gbtn gbtn--sm gbtn--pine" href="tel:' + p.tel.replace(/[^0-9]/g, '') + '">📞 전화</a>';
+  return h;
+}
+/* 간단한 고정 난수 (여행마다 같은 결과 → 폰끼리 미션이 겹치지 않음) */
+function seeded(seed){ var h = 2166136261; for (var i = 0; i < seed.length; i++){ h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); } return function(){ h += 0x6D2B79F5; var t = h; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+function shuffle(arr, rnd){ var a = arr.slice(); rnd = rnd || Math.random; for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(rnd() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+var KIND = { prep: '🧳 준비', move: '🚗 이동', food: '🍚 식사', cafe: '☕ 카페', shop: '🛒 장보기', stay: '🏡 숙소', kid: '👶 아가', bbq: '🔥 바베큐', play: '🍻 어른', photo: '📸 사진' };
+
+/* ---------- 일정 ---------- */
+var ALL = [];
+TRIP.days.forEach(function(d, di){ d.items.forEach(function(it, ii){ it._at = at(d.date, it.t); it._end = it.end ? at(d.date, it.end) : null; it._id = 'it-' + di + '-' + ii; it._day = di; ALL.push(it); }); });
+var curDay = 0;
+function nowState(){
+  var now = Date.now(), cur = null, next = null;
+  for (var i = 0; i < ALL.length; i++){ if (ALL[i]._at <= now) cur = ALL[i]; else { next = ALL[i]; break; } }
+  if (now > Date.parse(TRIP.endISO)) return { phase: 'after' };
+  if (!cur) return { phase: 'before', next: ALL[0] };
+  return { phase: 'during', cur: cur, next: next };
+}
+function renderDays(){
+  $('#days').innerHTML = TRIP.days.map(function(d, i){
+    var md = d.date.slice(5).replace('-', '/').replace(/^0/, '');
+    return '<button type="button" data-day="' + i + '" aria-pressed="' + (i === curDay) + '">' + md + ' (' + d.label + ')<small>' + esc(d.title) + '</small></button>';
+  }).join('');
+}
+function renderTL(){
+  var st = nowState(), d = TRIP.days[curDay];
+  $('#tl').innerHTML = d.items.map(function(it){
+    var p = it.place ? TRIP.places[it.place] : null;
+    var cls = 'it k-' + it.k;
+    var isNow = st.phase === 'during' && st.cur === it;
+    if (isNow) cls += ' is-now';
+    else if (st.phase === 'after' || (st.phase === 'during' && it._at < st.cur._at)) cls += ' is-past';
+    var h = '<li class="' + cls + '" id="' + it._id + '">';
+    h += '<div class="it__t">' + (it.approx ? '~' : '') + it.t + (it.end ? '<small>~' + it.end + '</small>' : '') + '</div><span class="it__dot" aria-hidden="true"></span>';
+    h += '<div class="it__c"><span class="it__k">' + KIND[it.k] + '</span>' + (isNow ? '<span class="nowtag">지금</span>' : '');
+    h += '<h3>' + rich(it.title) + '</h3>';
+    if (it.memo && it.memo.length) h += '<ul class="it__m dots">' + it.memo.map(function(m){ return '<li>' + rich(m) + '</li>'; }).join('') + '</ul>';
+    if (it.alt) h += '<p class="it__alt">' + rich(it.alt) + '</p>';
+    if (p) h += '<div class="it__acts btnrow">' + mapBtns(p) + '</div>';
+    return h + '</div></li>';
+  }).join('');
+}
+function renderWx(){
+  var box = $('#wx'), w = load('wx', null), d = TRIP.days[curDay];
+  if (!w || !w.daily) { box.hidden = true; return; }
+  var i = w.daily.time.indexOf(d.date);
+  if (i < 0) { box.hidden = true; return; }
+  var code = w.daily.weather_code[i], ico = code >= 61 ? '🌧️' : code >= 51 ? '🌦️' : code >= 3 ? '☁️' : code >= 1 ? '⛅' : '☀️';
+  var ss = (w.daily.sunset[i] || '').slice(11, 16);
+  box.innerHTML = '<span>' + ico + ' <b>' + Math.round(w.daily.temperature_2m_max[i]) + '° / ' + Math.round(w.daily.temperature_2m_min[i]) + '°</b></span>' +
+    '<span>☔ ' + (w.daily.precipitation_probability_max[i] == null ? '-' : w.daily.precipitation_probability_max[i]) + '%</span>' +
+    (ss ? '<span>🌇 일몰 ' + ss + '</span>' : '') + '<span class="muted small">화도면 예보</span>';
+  box.hidden = false;
+}
+function fetchWx(){
+  var w = load('wx', null);
+  if (w && Date.now() - w._t < 3 * 3600000) return;
+  var u = 'https://api.open-meteo.com/v1/forecast?latitude=' + TRIP.lat + '&longitude=' + TRIP.lon +
+    '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunset&timezone=Asia%2FSeoul&start_date=' + TRIP.start + '&end_date=' + TRIP.end;
+  fetch(u).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (j && j.daily){ j._t = Date.now(); save('wx', j); renderWx(); } }).catch(function(){});
+}
+function renderCrew(){
+  $('#crewCard').innerHTML = '<h3>함께 가는 세 가족</h3><div class="crew">' + TRIP.families.map(function(f){
+    return '<div class="fam" style="--fc:' + f.color + '"><b>' + esc(f.name) + (f.id === TRIP.host ? ' 👑' : '') + '</b>' + esc(f.couple.join(' · ')) +
+      '<span class="kid">👶 ' + esc(f.kid) + ' ' + f.mo + '개월</span></div>';
+  }).join('') + '</div><p class="muted small" style="margin-top:8px">👑 주최 · 개월 수는 10/10 기준</p>';
+}
+
+/* ---------- 헤더: D-day · 지금/다음 ---------- */
+function renderTicker(){
+  var st = nowState(), today = kstDate(Date.now()), dd = dayDiff(today, TRIP.start), tk = $('#ticker'), pill = $('#ddayPill');
+  if (st.phase === 'before'){
+    pill.textContent = dd > 0 ? 'D-' + dd : 'D-DAY';
+    var todo = nextTodo();
+    tk.innerHTML = '<b>' + (dd > 0 ? dd + '일 남았어요' : '오늘 출발!') + '</b> · 10/10(토) ' + ALL[0].t + ' 준비, 08:30 출발' +
+      (todo ? '<span class="tk-sub">다음 할 일: ' + esc(plain(todo)) + '</span>' : '');
+    tk.setAttribute('data-go', todo ? 'shop' : 'plan');
+  } else if (st.phase === 'during'){
+    pill.textContent = st.cur._day === 0 ? '1일차' : '2일차';
+    var mins = st.next ? Math.round((st.next._at - Date.now()) / 60000) : 0;
+    tk.innerHTML = '<b>지금</b> ' + esc(plain(st.cur.title)) +
+      (st.next ? '<span class="tk-sub">다음 ' + st.next.t + ' ' + esc(plain(st.next.title)) + (mins < 120 ? ' · ' + mins + '분 뒤' : '') + '</span>' : '');
+    tk.setAttribute('data-go', 'now');
+  } else {
+    pill.textContent = '끝!';
+    tk.innerHTML = '<b>수고했어요!</b> 정산 탭에서 마무리해요 💸';
+    tk.setAttribute('data-go', 'split');
+  }
+}
+function nextTodo(){
+  var done = load('shop', {}), g = TRIP.shop[0].groups[0].items;
+  for (var i = 0; i < g.length; i++) if (!done[g[i][0]]) return g[i][1];
+  return null;
+}
+
+/* ---------- 장소·안내 ---------- */
+function renderPlaces(){
+  var s = TRIP.stay;
+  $('#stayCard').innerHTML = '<div class="card"><p class="eyebrow">STAY</p><h3>🏡 ' + esc(s.name) + '</h3>' +
+    '<p>' + esc(s.area) + '<br>' + rich(s.addr) + '</p><p><b>체크인</b> ' + esc(s.in) + ' · <b>체크아웃</b> ' + esc(s.out) + '</p>' +
+    '<ul class="dots small">' + s.facts.map(function(f){ return '<li>' + rich(f) + '</li>'; }).join('') + '</ul>' +
+    '<div class="btnrow" style="margin-top:10px"><a class="gbtn gbtn--sm" href="' + s.url + '" target="_blank" rel="noopener">에어비앤비</a>' + mapBtns({ q: s.q }) + '</div></div>';
+  var so = TRIP.sos;
+  $('#sosCard').innerHTML = '<div class="card sos"><h3>🚑 ' + esc(so.title) + '</h3><ul class="dots">' + so.lines.map(function(l){ return '<li>' + rich(l) + '</li>'; }).join('') + '</ul>' +
+    '<div class="btnrow" style="margin-top:10px">' + so.calls.map(function(c){ return '<a class="gbtn gbtn--sm' + (c[1] === '119' ? ' gbtn--ember' : '') + '" href="tel:' + c[1].replace(/[^0-9]/g, '') + '">📞 ' + esc(c[0]) + '</a>'; }).join('') +
+    so.links.map(function(l){ return '<a class="gbtn gbtn--sm" href="' + l[1] + '" target="_blank" rel="noopener">' + esc(l[0]) + '</a>'; }).join('') +
+    mapBtns({ q: '비에스종합병원' }) + '</div></div>';
+  var groups = [['일정 장소', function(k, p){ return !p.b && ['아점', '카페', '마트'].indexOf(p.kind) >= 0; }],
+                ['B안', function(k, p){ return !!p.b; }],
+                ['근처 편의시설 · 바다', function(k, p){ return ['편의점', '약국', '바다'].indexOf(p.kind) >= 0; }]];
+  $('#placeList').innerHTML = groups.map(function(g){
+    var keys = Object.keys(TRIP.places).filter(function(k){ return k !== 'stay' && g[1](k, TRIP.places[k]); });
+    return '<h3 class="sec">' + g[0] + '</h3><div class="pl">' + keys.map(function(k){
+      var p = TRIP.places[k];
+      return '<div class="pl__c"><h3>' + esc(p.name) + '<span class="tag' + (p.b ? ' tag--b' : '') + '">' + esc(p.b ? 'B안 · ' + p.kind : p.kind) + '</span></h3>' +
+        '<div class="pl__meta">' + (p.area ? '<div>📍 ' + esc(p.area) + '</div>' : '') + (p.hours ? '<div>🕘 ' + rich(p.hours) + '</div>' : '') + (p.drive ? '<div>🚗 ' + esc(p.drive) + ' (평소)</div>' : '') + '</div>' +
+        (p.note ? '<p class="pl__note">' + rich(p.note) + '</p>' : '') + '<div class="btnrow">' + mapBtns(p) + '</div></div>';
+    }).join('') + '</div>';
+  }).join('');
+  renderInfo();
+}
+function collectQ(){
+  var out = [];
+  function walk(v, label){
+    if (typeof v === 'string'){ if (v.indexOf('{?') >= 0) out.push((label ? label + ' — ' : '') + plain(v)); return; }
+    if (Array.isArray(v)) { v.forEach(function(x){ walk(x, label); }); return; }
+    if (v && typeof v === 'object') Object.keys(v).forEach(function(k){ walk(v[k], v.name || v.title || label); });
+  }
+  walk(TRIP.days, ''); walk(TRIP.places, ''); walk(TRIP.stay, '숙소'); walk(TRIP.sos, '응급'); walk(TRIP.shop, '');
+  var seen = {}; return out.filter(function(x){ if (seen[x]) return false; seen[x] = 1; return true; });
+}
+var deferredPrompt = null;
+function renderInfo(){
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
+  var q = collectQ();
+  $('#infoCards').innerHTML =
+    '<h3 class="sec">앱처럼 쓰기</h3><div class="card"><h3>📲 홈 화면에 추가</h3>' +
+    (standalone ? '<p>이미 홈 화면 앱으로 열었어요 👍 한 번 열어 두면 인터넷이 약한 곳에서도 열려요.</p>' :
+      '<p><b>안드로이드(크롬)</b>: 아래 버튼, 또는 ⋮ 메뉴 → "홈 화면에 추가"</p><p><b>아이폰(사파리)</b>: 공유 버튼 → "홈 화면에 추가"</p>') +
+    '<div class="btnrow" style="margin-top:10px">' + (!standalone && !ios ? '<button class="gbtn gbtn--sm gbtn--sun" type="button" id="installBtn"' + (deferredPrompt ? '' : ' disabled') + '>홈 화면에 추가</button>' : '') +
+    '<button class="gbtn gbtn--sm" type="button" id="shareBtn">📤 링크 보내기</button></div></div>' +
+    '<div class="card"><h3>🔎 확인 필요 (' + q.length + ')</h3><p class="muted small">전화나 공식 안내로 확인하면 지워요.</p><ul class="dots qlist">' + q.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
+    '<p class="foot">' + esc(TRIP.footer) + '<br>🔖 앱 버전 ' + esc(BUILD) + '</p>';
+}
+
+/* ---------- 체크리스트 ---------- */
+function renderShop(){
+  var done = load('shop', {});
+  $('#shopLists').innerHTML = TRIP.shop.map(function(l){
+    var all = [], h = '';
+    l.groups.forEach(function(g){
+      h += '<div class="ck__g">' + (g.name ? '<h4>' + esc(g.name) + '</h4>' : '') + g.items.map(function(it){
+        all.push(it[0]);
+        return '<label class="ck__i"><input type="checkbox" data-ck="' + it[0] + '"' + (done[it[0]] ? ' checked' : '') + '><span>' + rich(it[1]) + '</span></label>';
+      }).join('') + '</div>';
+    });
+    var n = all.filter(function(k){ return done[k]; }).length;
+    return '<section class="ck" data-list="' + l.id + '"><div class="ck__h"><h3>' + esc(l.title) + '<small>' + esc(l.sub) + '</small></h3><span class="ck__n">' + n + '/' + all.length + '</span></div>' +
+      '<div class="ck__bar"><i style="width:' + (all.length ? n / all.length * 100 : 0) + '%"></i></div>' +
+      (l.note ? '<p class="ck__note">' + rich(l.note) + '</p>' : '') + h +
+      '<div class="ck__f"><button class="gbtn gbtn--sm" type="button" data-ckreset="' + l.id + '">체크 지우기</button></div></section>';
+  }).join('');
+  updateShopBadge();
+}
+function updateShopBadge(){
+  var done = load('shop', {}), left = 0;
+  TRIP.shop.forEach(function(l){ if (l.id === 'fam') return; l.groups.forEach(function(g){ g.items.forEach(function(it){ if (!done[it[0]]) left++; }); }); });
+  var b = $('#dockShop'); b.textContent = left; b.hidden = !left;
+}
+function refreshList(sec){
+  var done = load('shop', {}), boxes = $$('input[data-ck]', sec), n = boxes.filter(function(b){ return done[b.getAttribute('data-ck')]; }).length;
+  $('.ck__n', sec).textContent = n + '/' + boxes.length;
+  $('.ck__bar i', sec).style.width = (boxes.length ? n / boxes.length * 100 : 0) + '%';
+}
+
+/* ---------- 놀거리 ---------- */
+function renderGames(){
+  var G = TRIP.games, ppl = people();
+  var cats = Object.keys(G.liar);
+  var h = '';
+  h += '<div class="card game"><h3><span class="num">1</span>몰래 미션 🕵️</h3><p>체크인할 때 각자 <b>자기 이름</b>을 눌러 미션을 받아요. 밤 게임 시작할 때 다 같이 공개!</p>' +
+    '<ul class="dots small"><li>성공하면 한 명 지목해서 한 잔 · 들키면 원샷</li><li>남의 이름 누르면 반칙 🍺 (미션은 폰마다 같아요)</li></ul>' +
+    '<div class="names" id="misNames">' + ppl.map(function(n){ return '<button type="button" data-mis="' + esc(n) + '">' + esc(n) + '</button>'; }).join('') + '</div>' +
+    '<div class="draw" id="misOut" aria-live="polite">이름을 누르세요</div></div>';
+  h += '<div class="card game"><h3><span class="num">2</span>부부 텔레파시 💞</h3><p>질문을 뽑으면 부부가 포스트잇에 <b>동시에</b> 답을 써요. 다르면 둘 다 한 잔, 세 부부 다 맞으면 다 같이 건배.</p>' +
+    '<div class="draw" id="telOut" aria-live="polite">질문 뽑기를 누르세요</div><div class="btnrow" style="margin-top:10px"><button class="gbtn gbtn--ember" type="button" id="telBtn">질문 뽑기</button></div></div>';
+  h += '<div class="card game"><h3><span class="num">3</span>라이어 게임 🤥</h3><p>폰 하나를 돌려요. 한 명만 제시어 대신 "라이어"를 봐요. 한 마디씩 설명하고 라이어를 지목!</p>' +
+    '<div class="chipsel" id="liarCats" role="group" aria-label="주제">' + cats.map(function(c, i){ return '<button type="button" data-cat="' + esc(c) + '" aria-pressed="' + (i === 0) + '">' + esc(c) + '</button>'; }).join('') + '</div>' +
+    '<div class="draw" id="liarOut" aria-live="polite">시작을 누르세요</div>' +
+    '<div class="btnrow" style="margin-top:10px"><button class="gbtn gbtn--ember" type="button" id="liarStart">새 판 시작</button><button class="gbtn" type="button" id="liarNext" hidden>보기</button><button class="gbtn gbtn--sm" type="button" id="liarReveal" hidden>정답 공개</button></div></div>';
+  h += '<div class="card game"><h3><span class="num">4</span>비어퐁 🏓</h3><p>종이컵 6개를 삼각형으로 놓고 탁구공을 던져 넣어요. 들어간 컵은 상대 팀이 마시고 치워요. 컵을 먼저 다 없앤 팀 승리.</p>' +
+    '<div class="btnrow" style="margin-top:10px"><button class="gbtn gbtn--ember" type="button" id="teamBtn">팀 뽑기 (부부는 갈라놓기)</button><button class="gbtn gbtn--sm" type="button" id="teamBtn2">완전 랜덤</button></div><div class="teams" id="teams"></div></div>';
+  h += '<div class="card game"><h3><span class="num">5</span>벌칙 젠가 · 끈끈이 스파이더맨 🕷️</h3><ul class="dots"><li><b>젠가</b>: 블록 몇 개에 벌칙을 써 두고, 뽑은 블록에 적힌 걸 해요 (숙소 보드게임에 젠가가 있는지 {?})</li>' +
+    '<li><b>스파이더맨</b>: 벽에 포스트잇 과녁(10·20·50·벌칙)을 붙이고 던져서 붙은 칸 점수. 지난번처럼 오래 버티기도 그대로!</li></ul>' +
+    '<div class="draw" id="penOut" aria-live="polite">벌칙이 필요하면 뽑기</div><div class="btnrow" style="margin-top:10px"><button class="gbtn gbtn--sun" type="button" id="penBtn">벌칙 뽑기</button></div></div>';
+  h += '<div class="card"><h3>🌙 어른 타임 약속</h3><ul class="dots small"><li>아가들 자는 층과 떨어져서, 비어퐁은 낮은 목소리로</li><li>휴대폰 영상통화로 아기방 모니터</li><li>남은 숯은 물로 완전히 끄고 자기 · 마지막 사람은 가스·불 확인</li></ul></div>';
+  $('#games').innerHTML = rich2(h);
+}
+/* games 안의 {?} 처리용 — 이미 HTML인 문자열에서 배지만 바꿈 */
+function rich2(h){ return h.replace(/\{\?([^}]*)\}/g, function(m, note){ return '<span class="qbadge">확인 필요' + (note ? ' · ' + esc(note) : '') + '</span>'; }); }
+function renderPhoto(){
+  var P = TRIP.photo, done = load('shots', {});
+  $('#photo').innerHTML = '<h3 class="sec">📸 단체사진 (10/11 09:30)</h3>' +
+    '<div class="card"><h3>아가들 단체복 아이디어</h3>' + P.outfits.map(function(o){ return '<div class="idea"><i>' + o[0] + '</i><div><b>' + esc(o[1]) + '</b><span class="small muted">' + esc(o[2]) + '</span></div></div>'; }).join('') +
+    '<p class="warn small">' + esc(P.sizeNote) + '</p></div>' +
+    '<section class="ck" data-list="shots"><div class="ck__h"><h3>찍을 사진 순서<small>아침 먹고 기분 좋을 때 · 휴대폰 거치대 + 타이머</small></h3></div><div class="ck__g">' +
+    P.shots.map(function(s){ return '<label class="ck__i"><input type="checkbox" data-shot="' + s[0] + '"' + (done[s[0]] ? ' checked' : '') + '><span>' + esc(s[1]) + '</span></label>'; }).join('') + '</div></section>';
+}
+var liar = null;
+function liarStep(){
+  var o = $('#liarOut'), nx = $('#liarNext');
+  if (!liar) return;
+  if (liar.i >= liar.order.length){ o.className = 'draw on'; o.innerHTML = '다 봤어요! 한 마디씩 설명 → 라이어 지목'; nx.hidden = true; $('#liarReveal').hidden = false; return; }
+  var who = liar.order[liar.i];
+  if (!liar.showing){ o.className = 'draw'; o.innerHTML = '📱 <b>' + esc(who) + '</b> 차례 — 혼자 보세요'; nx.textContent = '보기'; }
+  else { o.className = 'draw on'; o.innerHTML = who === liar.liar ? '🤥 당신은 <b>라이어</b><br><span class="small">주제: ' + esc(liar.cat) + '</span>' : '제시어: <b>' + esc(liar.word) + '</b><br><span class="small">주제: ' + esc(liar.cat) + '</span>'; nx.textContent = '가리고 다음 사람에게'; }
+}
+function teams(split){
+  var t, tries = 0;
+  do {
+    t = shuffle(people());
+    tries++;
+  } while (split && tries < 200 && TRIP.families.some(function(f){ var a = t.indexOf(f.couple[0]) < 3, b = t.indexOf(f.couple[1]) < 3; return a === b; }));
+  $('#teams').innerHTML = '<div><b>🔥 불꽃팀</b>' + t.slice(0, 3).map(esc).join(' · ') + '</div><div><b>🌊 파도팀</b>' + t.slice(3).map(esc).join(' · ') + '</div>';
+}
+
+/* ---------- 정산 ---------- */
+var payer = TRIP.host;
+function renderSplitForm(){
+  $('#payer').innerHTML = TRIP.families.map(function(f){ return '<button type="button" data-payer="' + f.id + '" style="--fc:' + f.color + '" aria-pressed="' + (f.id === payer) + '">' + esc(f.name) + '</button>'; }).join('');
+  $('#quick').innerHTML = TRIP.splitQuick.map(function(q){ return '<button type="button" data-qw="' + esc(q[0]) + '" data-qa="' + q[1] + '">' + esc(q[0]) + '</button>'; }).join('');
+}
+function renderLedger(){
+  var L = load('split', []);
+  $('#ledger').innerHTML = L.length ? L.map(function(e, i){
+    var f = fam(e.fam);
+    return '<li><span class="who" style="background:' + f.color + '">' + esc(f.name) + '</span><span>' + esc(e.what) + '</span><span class="amt">' + won(e.amt) + '</span><button class="del" type="button" data-del="' + i + '" aria-label="' + esc(e.what) + ' 지우기">✕</button></li>';
+  }).join('') : '<li class="empty">아직 없어요. 위에서 낸 가족·항목·금액을 넣어 주세요.</li>';
+  renderResult(L);
+}
+function settle(L){
+  var F = TRIP.families, paid = {}, total = 0;
+  F.forEach(function(f){ paid[f.id] = 0; });
+  L.forEach(function(e){ paid[e.fam] = (paid[e.fam] || 0) + e.amt; total += e.amt; });
+  var share = total / F.length;
+  var bal = F.map(function(f){ return { id: f.id, v: paid[f.id] - share }; });
+  var debt = bal.filter(function(b){ return b.v < -0.5; }).sort(function(a, b){ return a.v - b.v; });
+  var cred = bal.filter(function(b){ return b.v > 0.5; }).sort(function(a, b){ return b.v - a.v; });
+  var x = [], i = 0, j = 0;
+  while (i < debt.length && j < cred.length){
+    var m = Math.min(-debt[i].v, cred[j].v);
+    x.push({ from: debt[i].id, to: cred[j].id, amt: Math.round(m / 10) * 10 });
+    debt[i].v += m; cred[j].v -= m;
+    if (debt[i].v > -0.5) i++;
+    if (cred[j].v < 0.5) j++;
+  }
+  return { total: total, share: share, paid: paid, x: x.filter(function(t){ return t.amt > 0; }) };
+}
+function settleText(){
+  var L = load('split', []), s = settle(L);
+  var t = '[' + TRIP.title + ' 정산]\n총 ' + won(s.total) + ' / 가족당 ' + won(Math.round(s.share / 10) * 10) + '\n';
+  L.forEach(function(e){ t += '· ' + fam(e.fam).name + ' ' + e.what + ' ' + won(e.amt) + '\n'; });
+  t += '\n보낼 돈\n' + (s.x.length ? s.x.map(function(x){ return fam(x.from).name + ' → ' + fam(x.to).name + ' ' + won(x.amt); }).join('\n') : '없음 (딱 맞아요)');
+  return t;
+}
+function renderResult(L){
+  var box = $('#result');
+  if (!L.length){ box.innerHTML = '<h3>결과</h3><p class="empty">적은 내역이 생기면 누가 누구에게 얼마 보낼지 계산해요.</p>'; return; }
+  var s = settle(L);
+  box.innerHTML = '<h3>결과</h3><div class="sum"><div class="row"><span>총 지출</span><b>' + won(s.total) + '</b></div><div class="row"><span>가족당 (1/' + TRIP.families.length + ')</span><b>' + won(Math.round(s.share / 10) * 10) + '</b></div>' +
+    TRIP.families.map(function(f){ return '<div class="row small"><span><span class="who" style="background:' + f.color + '">' + esc(f.name) + '</span> 낸 돈</span><span>' + won(s.paid[f.id]) + '</span></div>'; }).join('') + '</div>' +
+    '<div class="xfer">' + (s.x.length ? s.x.map(function(x){ return esc(fam(x.from).name) + ' → ' + esc(fam(x.to).name) + ' <b>' + won(x.amt) + '</b>'; }).join('<br>') : '보낼 돈 없음 — 딱 맞아요') + '</div>' +
+    '<div class="btnrow" style="margin-top:10px"><button class="gbtn gbtn--pine" type="button" id="copySettle">📋 카톡용 복사</button><button class="gbtn gbtn--sm" type="button" id="clearSplit">전부 지우기</button></div>';
+}
+function copyText(t){
+  if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(function(){ toast('복사했어요 — 카톡에 붙여 넣으세요'); }, function(){ fallbackCopy(t); }); }
+  else fallbackCopy(t);
+}
+function fallbackCopy(t){
+  var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); toast('복사했어요 — 카톡에 붙여 넣으세요'); } catch (e) { toast('복사가 안 돼요 — 길게 눌러 복사해 주세요'); }
+  document.body.removeChild(ta);
+}
+
+/* ---------- 화면 전환 ---------- */
+var VIEWS = ['plan', 'places', 'shop', 'play', 'split'];
+function show(v, push){
+  if (VIEWS.indexOf(v) < 0) v = 'plan';
+  $$('main > .view').forEach(function(s){ s.hidden = s.getAttribute('data-view') !== v; });
+  $$('#dock button').forEach(function(b){ if (b.getAttribute('data-view') === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  if (push !== false && location.hash !== '#' + v) { try { history.pushState(null, '', '#' + v); } catch (e) { location.hash = v; } }
+  window.scrollTo(0, 0);
+}
+function goNow(){
+  var st = nowState();
+  if (st.phase === 'during'){ curDay = st.cur._day; renderDays(); renderTL(); renderWx(); show('plan'); var el = document.getElementById(st.cur._id); if (el) setTimeout(function(){ el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 60); }
+}
+
+/* ---------- 이벤트 ---------- */
+document.addEventListener('click', function(e){
+  var t = e.target.closest ? e.target : e.target.parentNode, b;
+  if ((b = t.closest('#dock button'))) { show(b.getAttribute('data-view')); return; }
+  if ((b = t.closest('[data-day]'))) { curDay = +b.getAttribute('data-day'); renderDays(); renderTL(); renderWx(); return; }
+  if ((b = t.closest('#ticker'))) { var g = b.getAttribute('data-go'); if (g === 'now') goNow(); else show(g); return; }
+  if ((b = t.closest('#themeBtn'))) {
+    var cur = load('theme', 'system'), nx = cur === 'system' ? 'light' : cur === 'light' ? 'dark' : 'system';
+    save('theme', nx);
+    if (nx === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', nx);
+    toast(nx === 'system' ? '테마: 폰 설정 따라가기' : nx === 'light' ? '테마: 밝게' : '테마: 어둡게'); return;
+  }
+  if ((b = t.closest('[data-ckreset]'))) {
+    var id = b.getAttribute('data-ckreset'), done = load('shop', {}), sec = b.closest('.ck');
+    if (!confirm('이 목록의 체크를 모두 지울까요?')) return;
+    $$('input[data-ck]', sec).forEach(function(i){ delete done[i.getAttribute('data-ck')]; i.checked = false; });
+    save('shop', done); refreshList(sec); updateShopBadge(); renderTicker(); return;
+  }
+  if ((b = t.closest('[data-mis]'))) {
+    var name = b.getAttribute('data-mis'), ppl = people(), M = shuffle(TRIP.games.missions, seeded('ghcamp26-mission'));
+    var o = $('#misOut');
+    if (b.getAttribute('aria-pressed') === 'true') { b.setAttribute('aria-pressed', 'false'); b.classList.add('done'); o.className = 'draw'; o.textContent = '가렸어요. 다음 사람!'; return; }
+    $$('#misNames button').forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+    b.setAttribute('aria-pressed', 'true');
+    o.className = 'draw on'; o.innerHTML = '🕵️ ' + esc(name) + '의 미션<br><b>' + esc(M[ppl.indexOf(name) % M.length]) + '</b><br><span class="small">외웠으면 이름을 한 번 더 눌러 가리기</span>'; return;
+  }
+  if ((b = t.closest('#telBtn'))) { var o2 = $('#telOut'); o2.className = 'draw on'; o2.textContent = '💞 ' + pick(TRIP.games.telepathy); return; }
+  if ((b = t.closest('#penBtn'))) { var o3 = $('#penOut'); o3.className = 'draw on'; o3.textContent = pick(TRIP.games.penalties); return; }
+  if ((b = t.closest('[data-cat]'))) { $$('#liarCats button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); }); return; }
+  if ((b = t.closest('#liarStart'))) {
+    var catB = $('#liarCats [aria-pressed="true"]'), cat = catB ? catB.getAttribute('data-cat') : Object.keys(TRIP.games.liar)[0];
+    var order = shuffle(people());
+    liar = { cat: cat, word: pick(TRIP.games.liar[cat]), liar: pick(order), order: order, i: 0, showing: false };
+    $('#liarNext').hidden = false; $('#liarReveal').hidden = true; liarStep(); return;
+  }
+  if ((b = t.closest('#liarNext'))) { if (!liar) return; if (liar.showing){ liar.showing = false; liar.i++; } else liar.showing = true; liarStep(); return; }
+  if ((b = t.closest('#liarReveal'))) { if (!liar) return; var o4 = $('#liarOut'); o4.className = 'draw on'; o4.innerHTML = '라이어는 <b>' + esc(liar.liar) + '</b>!<br>제시어: <b>' + esc(liar.word) + '</b>'; b.hidden = true; return; }
+  if ((b = t.closest('#teamBtn'))) { teams(true); return; }
+  if ((b = t.closest('#teamBtn2'))) { teams(false); return; }
+  if ((b = t.closest('[data-payer]'))) { payer = b.getAttribute('data-payer'); $$('#payer button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); }); return; }
+  if ((b = t.closest('[data-qw]'))) { $('#sWhat').value = b.getAttribute('data-qw'); var qa = +b.getAttribute('data-qa'); if (qa) $('#sAmt').value = qa.toLocaleString('ko-KR'); else $('#sAmt').focus(); return; }
+  if ((b = t.closest('[data-del]'))) { var L = load('split', []), k = +b.getAttribute('data-del'); if (!L[k] || !confirm(L[k].what + ' ' + won(L[k].amt) + ' 지울까요?')) return; L.splice(k, 1); save('split', L); renderLedger(); return; }
+  if ((b = t.closest('#copySettle'))) { copyText(settleText()); return; }
+  if ((b = t.closest('#clearSplit'))) { if (confirm('정산 내역을 전부 지울까요? 되돌릴 수 없어요.')) { save('split', []); renderLedger(); } return; }
+  if ((b = t.closest('#installBtn'))) { if (deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(function(){ deferredPrompt = null; renderInfo(); }); } return; }
+  if ((b = t.closest('#shareBtn'))) {
+    var url = location.href.split('#')[0];
+    if (navigator.share) navigator.share({ title: TRIP.title, text: TRIP.sub + ' — 일정·장보기·정산', url: url }).catch(function(){});
+    else copyText(url);
+    return;
+  }
+});
+document.addEventListener('change', function(e){
+  var i = e.target;
+  if (i.hasAttribute('data-ck')){ var d = load('shop', {}); if (i.checked) d[i.getAttribute('data-ck')] = 1; else delete d[i.getAttribute('data-ck')]; save('shop', d); refreshList(i.closest('.ck')); updateShopBadge(); renderTicker(); }
+  if (i.hasAttribute('data-shot')){ var s = load('shots', {}); if (i.checked) s[i.getAttribute('data-shot')] = 1; else delete s[i.getAttribute('data-shot')]; save('shots', s); }
+});
+$('#sAmt').addEventListener('input', function(){ var n = this.value.replace(/[^0-9]/g, ''); this.value = n ? (+n).toLocaleString('ko-KR') : ''; });
+$('#splitForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var what = $('#sWhat').value.trim(), amt = +$('#sAmt').value.replace(/[^0-9]/g, '');
+  if (!amt){ toast('금액을 넣어 주세요'); $('#sAmt').focus(); return; }
+  var L = load('split', []); L.push({ fam: payer, what: what || '기타', amt: amt, ts: Date.now() }); save('split', L);
+  $('#sWhat').value = ''; $('#sAmt').value = ''; renderLedger(); toast(fam(payer).name + ' ' + won(amt) + ' 추가');
+});
+window.addEventListener('popstate', function(){ show(location.hash.slice(1), false); });
+window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt = e; var b = $('#installBtn'); if (b) b.disabled = false; });
+
+/* ---------- 시작 ---------- */
+(function init(){
+  $('#subT').textContent = TRIP.sub;
+  var st = nowState();
+  if (st.phase === 'during') curDay = st.cur._day;
+  renderDays(); renderTL(); renderWx(); renderCrew(); renderTicker();
+  renderPlaces(); renderShop(); renderGames(); renderPhoto(); renderSplitForm(); renderLedger();
+  var h = location.hash.slice(1);
+  show(VIEWS.indexOf(h) >= 0 ? h : 'plan', false);
+  if (st.phase === 'during' && (!h || h === 'plan')) goNow();
+  fetchWx();
+  var last = load('build', null);
+  if (last && last !== BUILD) setTimeout(function(){ toast('새 버전이에요 · ' + BUILD); }, 600);
+  save('build', BUILD);
+  setInterval(function(){ var before = nowState(); renderTicker(); if (before.phase === 'during') renderTL(); }, 60000);
+  if ('serviceWorker' in navigator && /github\.io$/.test(location.hostname)) navigator.serviceWorker.register('sw.js').catch(function(){});
+})();
+})();
+</script>
+</body>
+</html>

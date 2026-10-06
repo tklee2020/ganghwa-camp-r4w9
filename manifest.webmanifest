@@ -1,0 +1,17 @@
+{
+  "name": "강화 베이비 캠프 · 마니산 베이비즈 1박 2일",
+  "short_name": "강화 캠프",
+  "description": "강화도 1박 2일 (2026.10.10–10.11) 일정·장소·장보기·놀거리·정산",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1F3A2E",
+  "theme_color": "#1F3A2E",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

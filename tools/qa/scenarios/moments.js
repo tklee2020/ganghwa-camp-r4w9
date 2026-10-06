@@ -10,6 +10,6 @@ const M = [
 ];
 module.exports = { parallel: 1, scenarios: M.map(([n, now]) => ({
   name: n, now, w: 390, h: 844,
-  steps: [{ wait: 900, eval: `document.querySelector('#ddayPill').textContent + ' | ' + document.querySelector('#ticker').innerText.split(String.fromCharCode(10)).join(' / ') + ' | now=' + ((document.querySelector('.is-now h3')||{}).textContent||'-') + ' | overflow=' + (document.documentElement.scrollWidth - innerWidth)` },
+  steps: [{ wait: 900, eval: `document.querySelector('#ddayPill').textContent + ' | ' + document.querySelector('#ticker').innerText.split(String.fromCharCode(10)).join(' / ') + ' | now=' + ((document.querySelector('.is-now .ev-tt')||{}).textContent||'-') + ' | overflow=' + (document.documentElement.scrollWidth - innerWidth)` },
           { shot: `m-${n}.png` }]
 })) };

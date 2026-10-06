@@ -1,9 +1,9 @@
 /* 강화 베이비 캠프 오프라인 지원 (도쿄 TOKYO QUEST sw.js 에서 지도 타일 부분을 뺀 것)
    - 페이지(index.html): 인터넷이 되면 항상 새 버전, 안 되거나 4초 넘게 걸리면 저장해 둔 버전
-   - 아이콘·글꼴: 한 번 받으면 저장해 두고 씀 (뒤에서 조용히 새로 받기)
+   - 아이콘·글꼴(fonts/Pretendard, 설치 때 미리 저장): 한 번 받으면 저장해 두고 씀 (뒤에서 조용히 새로 받기)
    - 날씨 API·지도 앱 링크: 가로채지 않음 (날씨는 페이지가 따로 저장해 둬요) */
-const V = 'ghc-v1';   /* 바꾸면 저장해 둔 글꼴·아이콘도 새로 받아요 */
-const CORE = ['./', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+const V = 'ghc-v2';   /* 바꾸면 저장해 둔 글꼴·아이콘도 새로 받아요 */
+const CORE = ['./', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './fonts/PretendardVariable.woff2'];
 const PAGE = new URL('./', self.registration.scope).href;
 
 self.addEventListener('install', e => {

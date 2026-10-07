@@ -333,6 +333,8 @@ ul.dots li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;hei
 .draw b{font-weight:800}
 .draw .small{font-weight:600;color:var(--ink-2)}
 .draw.on{border-style:solid;border-color:var(--sea);background:var(--sea-tint)}
+.lockbox{width:100%;color:var(--ink-2);font-family:inherit;cursor:pointer}
+.lockbox b{color:var(--ink)}
 .names{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .names button,.chipsel button{min-height:44px;padding:0 14px;border-radius:999px;border:0;background:var(--chip);color:var(--ink);font-size:15px;font-weight:800;cursor:pointer}
 .names button[aria-pressed="true"],.chipsel button[aria-pressed="true"]{background:var(--sea);color:var(--on-sea)}
@@ -549,7 +551,7 @@ const TRIP = {
       { t: '17:15', k: 'kid', title: '아가들 저녁 먼저', memo: ['이유식·반찬은 전자레인지로 데우기', '**소고기 첫 판은 간 없이** 굽고, 탄 데 떼고 잘게 (아기들 고기는 전부 잘게 잘라서)', '용준이는 이유식 위주 + 고기·고구마는 맛보기', '우진이는 햇반 데워서 잘게 자른 고기와', '도현이는 이유식 위주 + 고기·고구마는 아주 잘게 맛보기'] },
       { t: '18:00', k: 'bbq', title: '어른 바베큐 🍖', memo: ['해가 6시쯤 져요 — 금방 쌀쌀해지니 겉옷', '아기 식탁은 그릴에서 멀리'] },
       { t: '19:30', k: 'kid', title: '목욕 · 재우기', memo: ['욕실이 3개 — 세 가족 동시에', '자는 방은 2층 / 어른은 1층처럼 층을 나누면 편해요 {?}', '휴대폰 영상통화를 베이비 모니터로'] },
-      { t: '21:00', k: 'play', title: '어른 타임 · 술 & 게임', memo: ['놀거리 탭: 몰래 미션 공개 · 부부 텔레파시 · 라이어 · 비어퐁', '남은 숯으로 불멍 (불은 꼭 끄고 자기)'] }
+      { t: '21:00', k: 'play', title: '어른 타임 · 술 & 게임', memo: ['놀거리 탭의 몰래 미션 · 부부 텔레파시 · 라이어는 **20:00에 열려요** — 열리면 각자 자기 이름 눌러 미션 받기', '비어퐁 · 벌칙 젠가 → 끝날 때 몰래 미션 공개', '남은 숯으로 불멍 (불은 꼭 끄고 자기)'] }
     ] },
     { date: '2026-10-11', label: '일', title: '단체사진 → 칼국수 → 카페 → 해산', items: [
       { t: '08:00', k: 'food', title: '아가들 아침 + 어른은 가볍게', memo: ['아가들 아침은 챙겨 온 2끼째', '어른은 커피·과일 정도 — **아점이 11시 반**이에요 (해장 라면은 먹고 싶은 사람만)'] },
@@ -681,38 +683,52 @@ const TRIP = {
     ] }
   ],
   games: {
+    /* 몰래 미션·부부 텔레파시·라이어는 이 시각 전엔 잠겨요. 10/7까지 열려 있던 문항은 미리 본 사람이 있어서
+       전부 새 문항으로 바꿨어요 (옛 문항과 겹치는 것 없음 · 옛 문항은 git 3e0c454). 벌칙·팀 뽑기는 늘 열려 있어요. */
+    openISO: '2026-10-10T20:00:00+09:00',
     missions: [
-      '누군가가 나에게 "진짜?"를 세 번 말하게 하기',
-      '부탁하지 않고 다른 사람이 내 잔을 채우게 하기',
-      '대화 중에 "마니산"을 자연스럽게 세 번 말하기',
-      '서로 다른 두 사람과 하이파이브하기',
-      '누군가에게서 "고마워"를 세 번 듣기',
-      '다른 집 육아 꿀팁을 하나 물어보고 진지하게 메모하는 척하기',
-      '누군가가 내 이름을 다섯 번 부르게 하기',
-      '건배 제의를 내가 두 번 하기',
-      '다른 사람 휴대폰으로 사진 한 장 찍어 주기',
-      '누군가가 내 말투를 따라 하게 만들기',
-      '누군가가 나에게 물 한 잔 가져다주게 하기',
-      '대화에 아는 노래 제목 세 개를 자연스럽게 섞기'
+      '대화에 "순무"를 자연스럽게 세 번 넣기 (강화 특산물)',
+      '누군가가 나에게 "헐"을 두 번 말하게 하기',
+      '다른 집 사람과 단둘이 셀카 한 장 찍기',
+      '누군가에게 안주를 "아~" 해서 먹여 주기',
+      '누군가가 내 휴대폰 속 아기 사진을 1분 넘게 보게 만들기',
+      '누군가가 나한테 새 별명을 지어 주게 하기',
+      '게임 한 판을 일부러 져 주고 아무도 눈치 못 채게 하기',
+      '라이어가 아닌데 라이어로 지목받기',
+      '누군가가 나에게 "그만해~"라고 말하게 만들기',
+      '서로 다른 두 사람에게 귓속말하기 (내용은 아무거나)',
+      '자리를 세 번 바꿔 앉기',
+      '누군가가 내 옷이나 머리를 칭찬하게 만들기',
+      '아무도 모르게 남의 젓가락을 내 것과 바꿔 두기',
+      '흥얼거린 노래를 누군가가 따라 부르게 하기',
+      '누군가가 내 잔을 대신 마셔 주게 하기',
+      '아재개그 하나로 두 사람 이상 웃기기',
+      '누군가의 손금을 봐 주는 척하기',
+      '내 배우자 자랑을 아무렇지 않게 두 번 하기',
+      '누군가의 웃긴 사진을 몰래 찍어 두고 마지막에 공개하기',
+      '누군가가 나에게 "기분 좋은 일 있어?"라고 묻게 만들기'
     ],
     telepathy: [
-      '처음 만난 장소는?', '첫 데이트 메뉴는?', '배우자가 제일 싫어하는 집안일은?', '우리 아기가 처음 한 말(또는 소리)은?',
-      '배우자의 최애 술은?', '배우자가 스트레스 받으면 하는 행동은?', '배우자의 잠버릇은?', '육아하면서 배우자가 제일 잘하는 것은?',
-      '배우자의 최애 야식은?', '연애 때 서로 부르던 별명은?', '배우자가 지금 제일 받고 싶은 선물은?', '아기 이름 후보 중 탈락한 이름은?',
-      '배우자 휴대폰 배경화면은?', '배우자가 노래방에서 꼭 부르는 노래는?', '둘이 처음 같이 간 여행지는?', '배우자가 제일 아끼는 물건은?',
-      '아기는 누구를 더 닮았다고 생각해?', '먼저 고백한 사람은?', '배우자가 제일 무서워하는 것은?', '10년 뒤 살고 싶은 곳은?',
-      '배우자의 MBTI는?', '혼자 하루가 생기면 배우자가 제일 먼저 할 일은?', '결혼식 날 가장 기억나는 장면은?', '배우자가 제일 자주 하는 말은?'
+      '배우자의 첫인상을 한 단어로?', '프러포즈 장소는?', '첫 키스 장소는?', '연애할 때 제일 크게 싸운 이유는?',
+      '배우자가 제일 좋아하는 연예인은?', '배우자의 최애 치킨 메뉴는?', '배우자가 제일 좋아하는 커피 메뉴는?', '배우자의 최애 라면은?',
+      '배우자가 제일 싫어하는 음식은?', '배우자가 제일 자신 있는 요리는?', '배우자의 어릴 적 꿈은?', '배우자의 숨은 특기는?',
+      '배우자가 요즘 제일 자주 여는 앱은?', '배우자가 집에서 제일 오래 있는 자리는?', '둘이 마지막으로 같이 본 영화(드라마)는?', '로또 1등 되면 배우자가 제일 먼저 살 것은?',
+      '배우자가 제일 좋아하는 계절은?', '배우자의 신발 사이즈는?', '다음 가족 여행지로 배우자가 꼽을 곳은?', '배우자가 제일 좋아하는 숫자는?',
+      '우리 아기가 제일 좋아하는 장난감은?', '우리 아기가 자지러지게 웃는 순간은?', '배우자가 아기를 부르는 애칭은?', '기저귀를 더 많이 간 사람은?'
     ],
     penalties: [
       '원샷 🍺', '배우자와 러브샷', '애교 한 번', '성대모사 하나', '내일 아침 라면 담당', '설거지 담당', '쓰레기 버리기 담당',
       '노래 한 소절', '지목한 사람 잔 채우기', '오른쪽 사람 30초 칭찬하기', '다음 벌칙 면제권 🎟️', '지목한 사람이 원샷'
     ],
     liar: {
-      '음식': ['삼겹살', '짜장면', '떡볶이', '김치찌개', '초밥', '치킨', '냉면', '순두부', '꽃게탕', '라면'],
-      '육아템': ['젖병', '기저귀', '유모차', '아기띠', '쪽쪽이', '물티슈', '턱받이', '카시트', '범퍼침대', '바운서'],
-      '여행지': ['제주도', '부산', '강릉', '경주', '전주', '여수', '속초', '도쿄', '오사카', '다낭'],
-      '동물': ['기린', '펭귄', '코끼리', '판다', '고양이', '강아지', '사자', '토끼', '하마', '거북이'],
-      '직업': ['소방관', '의사', '요리사', '유치원 선생님', '경찰', '가수', '택배 기사', '개발자', '미용사', '파일럿']
+      '음식': ['피자', '족발', '마라탕', '비빔밥', '곱창', '돈까스', '칼국수', '김밥', '햄버거', '쌀국수', '갈비찜', '부대찌개'],
+      '육아템': ['분유', '보행기', '아기 욕조', '체온계', '치발기', '하이체어', '모빌', '콧물 흡입기', '놀이매트', '쏘서', '수유쿠션', '손톱깎이'],
+      '여행지': ['괌', '하와이', '방콕', '파리', '뉴욕', '싱가포르', '발리', '후쿠오카', '타이베이', '통영', '가평', '남이섬'],
+      '동물': ['호랑이', '원숭이', '캥거루', '다람쥐', '얼룩말', '고슴도치', '악어', '돌고래', '부엉이', '낙타', '수달', '햄스터'],
+      '직업': ['간호사', '변호사', '유튜버', '군인', '은행원', '농부', '바리스타', '기자', '축구 선수', '마술사', '승무원', '약사'],
+      '캠핑': ['텐트', '토치', '집게', '마시멜로', '랜턴', '버너', '캠핑의자', '침낭', '모기향', '은박 호일', '해먹', '코펠'],
+      '스포츠': ['야구', '농구', '배구', '골프', '테니스', '수영', '볼링', '탁구', '스키', '마라톤', '태권도', '배드민턴'],
+      '과자': ['새우깡', '꼬깔콘', '초코파이', '빼빼로', '포카칩', '홈런볼', '바나나킥', '맛동산', '오징어땅콩', '칸쵸', '꼬북칩', '허니버터칩']
     }
   },
   photo: {
@@ -745,7 +761,7 @@ const TRIP = {
 <script>
 (function(){
 'use strict';
-var BUILD = '10/7 12:46';
+var BUILD = '10/7 14:31';
 var NS = 'ghcamp26:';
 var TZ = 'Asia/Seoul';
 
@@ -1039,7 +1055,7 @@ function renderPlayTile(){
   var it = null; ALL.forEach(function(x){ if (!it && x.k === 'play') it = x; });
   var d = it ? TRIP.days[it._day] : null, today = kstDate(Date.now());
   $('#playTile').innerHTML = th('놀거리') + '<div class="card"><p class="play-t">' + (it ? (d.date === today ? '오늘 밤 ' : md(d.date) + '(' + d.label + ') 밤 ') + it.t + ' ' + esc(plain(it.title)) : '어른 타임') + '</p>' +
-    '<p class="k play-k">몰래 미션 · 부부 텔레파시 · 라이어 · 비어퐁</p><span class="sp" aria-hidden="true"></span><button class="btn btn--sec btn--full" type="button" data-go="play">놀거리 열기 →</button></div>';
+    '<p class="k play-k">' + (gamesOpen() ? '몰래 미션 · 부부 텔레파시 · 라이어 · 비어퐁' : '🔒 미션·텔레파시·라이어는 ' + (it && d.date === TRIP.games.openISO.slice(0, 10) ? TRIP.games.openISO.slice(11, 16) : esc(openLabel())) + ' 오픈') + '</p><span class="sp" aria-hidden="true"></span><button class="btn btn--sec btn--full" type="button" data-go="play">놀거리 열기 →</button></div>';
 }
 
 /* ---------- 장소·안내 ---------- */
@@ -1120,18 +1136,33 @@ function refreshList(sec){
 
 /* ---------- 놀거리 ---------- */
 function gameTile(label, body){ return '<section class="tile">' + th(label) + '<div class="card game">' + body + '</div></section>'; }
+/* 비밀 게임(몰래 미션·텔레파시·라이어)은 TRIP.games.openISO 전엔 잠가요 — 미리 보면 재미가 없어서 */
+var gamesShown = null;
+function gamesOpen(){ return !TRIP.games.openISO || Date.now() >= Date.parse(TRIP.games.openISO); }
+function openLabel(){
+  var s = TRIP.games.openISO, d = s.slice(0, 10), lb = '';
+  TRIP.days.forEach(function(x){ if (x.date === d) lb = '(' + x.label + ')'; });
+  return (kstDate(Date.now()) === d ? '오늘 ' : md(d) + lb + ' ') + s.slice(11, 16);
+}
+function leftTxt(){
+  var m = Math.ceil((Date.parse(TRIP.games.openISO) - Date.now()) / 60000), d = Math.floor(m / 1440), hh = Math.floor(m % 1440 / 60), mm = m % 60;
+  if (m <= 0) return '열렸어요 — 눌러서 시작';
+  return (d ? d + '일 ' + hh + '시간' : hh ? hh + '시간 ' + mm + '분' : mm + '분') + ' 남았어요';
+}
+function lockBox(){ return '<button type="button" class="draw lockbox"><span>🔒 <b>' + esc(openLabel()) + '</b>에 열려요<br><span class="small" data-left>' + leftTxt() + '</span></span></button>'; }
 function renderGames(){
-  var G = TRIP.games, ppl = people(), cats = Object.keys(G.liar), h = '';
-  h += gameTile('1 · 몰래 미션 🕵️', '<p>체크인할 때 각자 <b>자기 이름</b>을 눌러 미션을 받아요. 밤 게임 시작할 때 다 같이 공개!</p>' +
+  var G = TRIP.games, ppl = people(), cats = Object.keys(G.liar), open = gamesOpen(), h = '';
+  gamesShown = open;
+  h += gameTile('1 · 몰래 미션 🕵️', '<p>' + (open ? '각자 <b>자기 이름</b>을 눌러 미션을 받아요.' : '<b>' + esc(openLabel()) + '</b>에 열리면 각자 <b>자기 이름</b>을 눌러 미션을 받아요.') + ' 게임 끝날 때 다 같이 공개!</p>' +
     '<ul class="dots small"><li>성공하면 한 명 지목해서 한 잔 · 들키면 원샷</li><li>남의 이름 누르면 반칙 🍺 (미션은 폰마다 같아요)</li></ul>' +
-    '<div class="names" id="misNames">' + ppl.map(function(n){ return '<button type="button" data-mis="' + esc(n) + '">' + esc(n) + '</button>'; }).join('') + '</div>' +
-    '<div class="draw" id="misOut" aria-live="polite">이름을 누르세요</div>');
+    (open ? '<div class="names" id="misNames">' + ppl.map(function(n){ return '<button type="button" data-mis="' + esc(n) + '">' + esc(n) + '</button>'; }).join('') + '</div>' +
+    '<div class="draw" id="misOut" aria-live="polite">이름을 누르세요</div>' : lockBox()));
   h += gameTile('2 · 부부 텔레파시 💞', '<p>질문을 뽑으면 부부가 포스트잇에 <b>동시에</b> 답을 써요. 다르면 둘 다 한 잔, 세 부부 다 맞으면 다 같이 건배.</p>' +
-    '<div class="draw" id="telOut" aria-live="polite">질문 뽑기를 누르세요</div><div class="btnrow"><button class="btn btn--pri" type="button" id="telBtn">질문 뽑기</button></div>');
+    (open ? '<div class="draw" id="telOut" aria-live="polite">질문 뽑기를 누르세요</div><div class="btnrow"><button class="btn btn--pri" type="button" id="telBtn">질문 뽑기</button></div>' : lockBox()));
   h += gameTile('3 · 라이어 게임 🤥', '<p>폰 하나를 돌려요. 한 명만 제시어 대신 "라이어"를 봐요. 한 마디씩 설명하고 라이어를 지목!</p>' +
-    '<div class="chipsel" id="liarCats" role="group" aria-label="주제">' + cats.map(function(c, i){ return '<button type="button" data-cat="' + esc(c) + '" aria-pressed="' + (i === 0) + '">' + esc(c) + '</button>'; }).join('') + '</div>' +
+    (open ? '<div class="chipsel" id="liarCats" role="group" aria-label="주제">' + cats.map(function(c, i){ return '<button type="button" data-cat="' + esc(c) + '" aria-pressed="' + (i === 0) + '">' + esc(c) + '</button>'; }).join('') + '</div>' +
     '<div class="draw" id="liarOut" aria-live="polite">시작을 누르세요</div>' +
-    '<div class="btnrow"><button class="btn btn--pri" type="button" id="liarStart">새 판 시작</button><button class="btn btn--sec" type="button" id="liarNext" hidden>보기</button><button class="btn btn--sec" type="button" id="liarReveal" hidden>정답 공개</button></div>');
+    '<div class="btnrow"><button class="btn btn--pri" type="button" id="liarStart">새 판 시작</button><button class="btn btn--sec" type="button" id="liarNext" hidden>보기</button><button class="btn btn--sec" type="button" id="liarReveal" hidden>정답 공개</button></div>' : lockBox()));
   h += gameTile('4 · 비어퐁 🏓', '<p>종이컵 6개를 삼각형으로 놓고 탁구공을 던져 넣어요. 들어간 컵은 상대 팀이 마시고 치워요. 컵을 먼저 다 없앤 팀 승리.</p>' +
     '<div class="btnrow"><button class="btn btn--pri" type="button" id="teamBtn">팀 뽑기 (부부는 갈라놓기)</button><button class="btn btn--sec" type="button" id="teamBtn2">완전 랜덤</button></div><div class="teams" id="teams"></div>');
   h += gameTile('5 · 벌칙 젠가 · 스파이더맨 🕷️', '<ul class="dots"><li><b>젠가</b>: 블록 몇 개에 벌칙을 써 두고, 뽑은 블록에 적힌 걸 해요 (숙소 보드게임에 젠가가 있는지 {?})</li>' +
@@ -1287,6 +1318,7 @@ document.addEventListener('click', function(e){
     $$('input[data-ck]', sec).forEach(function(i){ delete done[i.getAttribute('data-ck')]; i.checked = false; });
     save('shop', done); refreshList(sec); renderShopTile(); updateShopBadge(); renderTicker(); return;
   }
+  if ((b = t.closest('.lockbox'))) { if (gamesOpen()) { renderGames(); renderPlayTile(); } else toast('아직 잠겨 있어요 · ' + leftTxt()); return; }
   if ((b = t.closest('[data-mis]'))) {
     var name = b.getAttribute('data-mis'), ppl = people(), M = shuffle(TRIP.games.missions, seeded('ghcamp26-mission'));
     var o = $('#misOut');
@@ -1369,6 +1401,8 @@ try { var mq = matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListen
     var before = nowState(); renderTicker(); renderHero(); renderWx();
     if (before.phase === 'during') renderTL();
     if (miniListId() !== miniId) renderShopTile();
+    if (gamesOpen() !== gamesShown) { renderGames(); renderPlayTile(); }
+    else if (!gamesShown) $$('[data-left]').forEach(function(el){ el.textContent = leftTxt(); });
   }, 60000);
   if ('serviceWorker' in navigator && /github\.io$/.test(location.hostname)) navigator.serviceWorker.register('sw.js').catch(function(){});
 })();

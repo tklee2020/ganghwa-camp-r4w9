@@ -535,32 +535,30 @@ const TRIP = {
     q: '강화군 화도면 마니산로 634-15', url: 'https://www.airbnb.co.kr/rooms/19656335',
     in: '10/10(토) 15:00', out: '10/11(일) 11:00',
     brief: '부지 내 무료 주차 10대 · 바베큐 2만 원 (**숯은 각자**)',   /* 오늘 탭 숙소 타일 한 줄 */
-    facts: ['2층 독채 · 침실 3 (퀸 2 + 요·이불 3) · 욕실 3 · 최대 9명', '트램폴린 · 그네 · 미끄럼틀 · 보드게임 · 10인 식탁', '바베큐 2만 원 · 사전 예약 (그릴·석쇠·토치·착화제·장갑 제공, **숯은 각자**)', '자쿠지 3만 원 — 리스팅에 **"여름철"** 이용이라고 적혀 있어요. 10월에 쓸 수 있는지 호스트 확인 {?}', '실내에서 냄새 강한 요리는 제한 — 고기는 밖에서', '근처 마트가 일찍 닫아요 — 장은 미리', '집에서 하나로 화도점·CU·약국은 차로 2~3분, 토가·도레도레는 15분쯤']
+    facts: ['2층 독채 · 침실 3 (퀸 2 + 요·이불 3) · 욕실 3 · 최대 9명', '트램폴린 · 그네 · 미끄럼틀 · 보드게임 · 10인 식탁', '바베큐 2만 원 · 사전 예약 (그릴·석쇠·토치·착화제·장갑 제공, **숯은 각자**)', '실내에서 냄새 강한 요리는 제한 — 고기는 밖에서', '근처 마트가 일찍 닫아요 — 장은 미리', '집에서 하나로 화도점·CU·약국은 차로 2~3분, 토가·도레도레는 15분쯤']
   },
   days: [
     { date: '2026-10-10', label: '토', title: '모여서 아점 → 카페 → 장보기 → 바베큐', items: [
-      { t: '07:30', k: 'prep', title: '출발 준비 — 아이스박스부터', memo: ['고기·아이스팩을 아이스박스에 (아점·카페 동안 4~5시간 차에 실려요)', '아기 가방: 이유식·반찬 4끼(토 아점·토 저녁·일 아침·일 아점), 기저귀, 해열제, 여벌'] },
       { t: '08:30', k: 'move', title: '각자 출발 → **초지대교**로 건너기', memo: ['세 집 모두 강화 남부까지 평소 1시간 20분~1시간 40분 {?}', '강화로 들어가는 쪽은 9시~14시에 차가 몰려요 (강화군 초지교차로 신호 기준 · 한글날 연휴 공식 전망은 10/8경 발표)', '숙소가 남쪽이라 **강화대교 말고 초지대교** — 당일 아침 내비로 두 경로 비교', '10/10 저녁 외포항 새우젓 축제 — 강화읍·내가면 쪽은 피하기'] },
-      { t: '10:15', k: 'move', approx: true, title: '초지대교 통과 → 단톡에 "건넜음"', memo: ['장흥리식당은 다리에서 차로 6분쯤', '**10:30까지 못 건널 가족이 있으면** 단톡에 공지 → 네이버 예약 시간 미루기 (먼저 온 집이 자리 잡기)'] },
       { t: '10:30', end: '11:50', k: 'food', place: 'jangheungri', title: '아점 · 장흥리식당 (쭈꾸미)', memo: ['**네이버 예약**(1~50명) — 10:30 어른 6·아기 3, 유아의자 3개 요청', '순한맛 쭈꾸미 · 도토리묵사발 · 우진이는 어린이돈까스(7천 원)', '용준·도연이는 챙겨 온 이유식', '토·일 10:00 오픈 — 구글 후기 하나에 "11시 오픈"이라 예약할 때 확인 {?}'], alt: '**대안**: 강화밥상 선우당 (단체석·주차 약 40대 · 10:00 오픈 · 9명 자리는 전화)' },
-      { t: '12:00', end: '14:00', k: 'cafe', place: 'imrim', title: '카페 · 카페이림 (웰컴키즈존)', memo: ['장흥리식당에서 차로 1분 · 건물 옆 주차', '유아의자 · 정원 산책 — 낮잠 시간이라 유모차로 한 바퀴', '**연못 분수 — 아가들 물가 주의** · 고양이 3마리'], alt: '**B안** 우트우트 (온수리 · 2층 단체석 · 엘리베이터 없어 유모차는 1층)' },
+      { t: '12:00', end: '14:00', k: 'cafe', place: 'imrim', title: '카페 · 카페이림 (웰컴키즈존)', memo: ['장흥리식당에서 차로 1분 · 건물 옆 주차', '유아의자 · 정원 · 연못 분수 · 고양이 3마리'], alt: '**B안** 우트우트 (온수리 · 2층 단체석 · 엘리베이터 없어 유모차는 1층)' },
       { t: '14:15', k: 'shop', place: 'hanaroHwado', title: '장보기 · 하나로마트 화도점', memo: ['카페에서 차로 13분쯤', '채소·쌈·얼음 + 라면·햇반·계란·쌈장·소금/기름·일회용 식기 (코스트코에서 안 사는 것)', '토요일 마감 시각·얼음 판매 {?}'], alt: '**닫혀 있으면** 하나로마트 강화남부 길상본점 (08:00~21:00, 연중무휴)' },
-      { t: '15:00', k: 'stay', place: 'stay', title: '체크인 · 고기는 바로 냉장고로', memo: ['바베큐 사용료 2만 원 · 침실 3개 → 가족마다 한 방 (퀸 2 · 요 이불 3)', '아가들 낮잠 덜 잤으면 여기서 보충'] },
-      { t: '15:20', k: 'kid', title: '아가들 마당 놀이 · 트램폴린·미끄럼틀·그네', memo: ['트램폴린은 **한 번에 한 명 + 어른 한 명** — 9·12개월 아기와 두 살 형은 몸무게 차이가 커요'] },
+      { t: '15:00', k: 'stay', place: 'stay', title: '체크인', memo: ['바베큐 사용료 2만 원 · 침실 3개 → 가족마다 한 방 (퀸 2 · 요 이불 3)'] },
+      { t: '15:20', k: 'kid', title: '아가들 마당 놀이 · 트램폴린·미끄럼틀·그네' },
       { t: '16:30', k: 'bbq', title: '숯 피우기 (2명)', memo: ['착화제 + 토치, 숯이 하얗게 될 때까지 20~30분 (코코넛 숯 같은 브리켓은 더 걸려요)', '고구마는 호일에 싸서 **지금** 숯 가장자리에 (40분)'] },
-      { t: '17:15', k: 'kid', title: '아가들 저녁 먼저', memo: ['이유식·반찬은 전자레인지로 데우기', '**소고기 첫 판은 간 없이** 굽고, 탄 데 떼고 잘게 (아기들 고기는 전부 잘게 잘라서)', '용준이는 이유식 위주 + 고기·고구마는 맛보기', '우진이는 햇반 데워서 잘게 자른 고기와', '도연이는 이유식 위주 + 고기·고구마는 아주 잘게 맛보기'] },
-      { t: '18:00', k: 'bbq', title: '어른 바베큐 🍖', memo: ['해가 6시쯤 져요 — 금방 쌀쌀해지니 겉옷', '아기 식탁은 그릴에서 멀리'] },
+      { t: '17:15', k: 'kid', title: '아가들 저녁 먼저', memo: ['용준이는 이유식 위주 + 고기·고구마는 맛보기', '우진이는 햇반 데워서 잘게 자른 고기와', '도연이는 이유식 위주 + 고기·고구마는 아주 잘게 맛보기'] },
+      { t: '18:00', k: 'bbq', title: '어른 바베큐 🍖', memo: ['해가 6시쯤 져요 — 금방 쌀쌀해지니 겉옷'] },
       { t: '19:30', k: 'kid', title: '목욕 · 재우기', memo: ['욕실이 3개 — 세 가족 동시에', '자는 방은 2층 / 어른은 1층처럼 층을 나누면 편해요 {?}', '휴대폰 영상통화를 베이비 모니터로'] },
-      { t: '21:00', k: 'play', title: '어른 타임 · 술 & 게임', memo: ['놀거리 탭의 몰래 미션 · 부부 텔레파시 · 라이어는 **20:00에 열려요** — 열리면 각자 자기 이름 눌러 미션 받기', '비어퐁 · 벌칙 젠가 → 끝날 때 몰래 미션 공개', '남은 숯으로 불멍 (불은 꼭 끄고 자기)'] }
+      { t: '21:00', k: 'play', title: '어른 타임 · 술 & 게임', memo: ['놀거리 탭의 몰래 미션 · 부부 텔레파시 · 라이어는 **20:00에 열려요** — 열리면 각자 자기 이름 눌러 미션 받기', '비어퐁 · 벌칙 젠가 → 끝날 때 몰래 미션 공개'] }
     ] },
     { date: '2026-10-11', label: '일', title: '단체사진 → 칼국수 → 카페 → 해산', items: [
-      { t: '08:00', k: 'food', title: '아가들 아침 + 어른은 가볍게', memo: ['아가들 아침은 챙겨 온 2끼째', '어른은 커피·과일 정도 — **아점이 11시 반**이에요 (해장 라면은 먹고 싶은 사람만)'] },
-      { t: '09:30', k: 'photo', title: '📸 단체사진 (아가들 단체복)', memo: ['아침 먹고 기분 좋을 때 · 놀거리 탭의 사진 순서대로', '휴대폰 거치대 + 타이머'] },
-      { t: '10:15', k: 'stay', title: '정리 · 쓰레기 · 숯 불씨 확인', memo: ['냉장고 비우기 · 남은 술·고기는 나눠서 각자 아이스박스로 (아점·카페 동안 3시간쯤 차에 있어요)', '차는 각자 — 오늘 가는 곳은 전부 **초지대교 가는 길**이라 되돌아오지 않아요'] },
+      { t: '08:00', k: 'food', title: '아가들 아침 + 어른은 가볍게', memo: ['어른은 커피·과일 정도 — **아점이 11시 반**이에요 (해장 라면은 먹고 싶은 사람만)'] },
+      { t: '09:30', k: 'photo', title: '📸 단체사진 (아가들 단체복)', memo: ['놀거리 탭의 사진 순서대로 · 휴대폰 거치대 + 타이머'] },
+      { t: '10:15', k: 'stay', title: '정리 · 쓰레기', memo: ['차는 각자 — 오늘 가는 곳은 전부 **초지대교 가는 길**이라 되돌아오지 않아요'] },
       { t: '11:00', k: 'move', title: '체크아웃 → 미리내 (차로 15~20분)', memo: ['연휴 마지막 날 점심이라 **11시 반 전에 도착**해서 자리 잡기', '먼저 도착한 집이 9명 자리(룸) 부탁해 두기'] },
       { t: '11:30', end: '12:40', k: 'food', place: 'miri', title: '아점 · 미리내 바지락칼국수', memo: ['바지락칼국수 9천 원 · 무료 주차 · 대형 룸 후기 · 해장 국물', '용준·도연이는 챙겨 온 이유식 · 우진이는 면을 잘게 (국물은 짜요)', '9명 자리·유아의자 3개 — 전화로 {?}'], alt: '**대안**: 토가 (순두부 · 룸 4개 · 숙소 남서쪽이라 되돌아가요) · 욕쟁이할머니보리밥 (귀갓길 위)' },
       { t: '13:00', end: '14:00', k: 'cafe', place: 'deoradu', title: '카페 · 더라두 (빵)', memo: ['미리내에서 차로 6분쯤 · **초지대교 바로 앞**', '빵이 맛있는 곳 · 연휴라 붐빌 수 있어요', '**붐비면 바로 옆 아이나 카페로**', '일요일 영업시간·아기 동반·유아의자 {?}'], alt: '**붐비면** 아이나 카페 (바로 옆 · 약 400평 · "아이 동반 환영")' },
-      { t: '14:00', k: 'move', title: '해산 → **16시 전에 초지대교 건너기**', memo: ['카페에서 초지대교까지 차로 2분', '연휴 마지막 날 — 강화에서 나가는 차는 16~20시에 몰려요 (강화군 초지교차로 신호 기준) · 출발 전에 내비로 강화대교와 비교', '돌아가는 차에서 아가들 낮잠 · 집에 도착하면 단톡에 한마디'] }
+      { t: '14:00', k: 'move', title: '해산 → **16시 전에 초지대교 건너기**', memo: ['카페에서 초지대교까지 차로 2분', '연휴 마지막 날 — 강화에서 나가는 차는 16~20시에 몰려요 (강화군 초지교차로 신호 기준) · 출발 전에 내비로 강화대교와 비교'] }
     ] }
   ],
   places: {
@@ -604,27 +602,24 @@ const TRIP = {
     links: [['🌐 문 연 약국·병원 (e-gen)', 'https://www.e-gen.or.kr/']]
   },
   shop: [
-    { id: 'todo', title: '📋 출발 전 할 일', sub: '오늘(10/6)~토요일 아침', groups: [
+    { id: 'todo', me: true, title: '📋 출발 전 할 일', sub: '10/9(금)~토요일 아침', groups: [
       { items: [
-        ['t1', '10/7(수) 코스트코 장보기 — 영수증 사진은 정산 탭에'],
+        ['t1', '10/9(금) 아침 코스트코 장보기 — 영수증 사진은 정산 탭에'],
         ['t2', '미리내 바지락칼국수(032-933-2480) — 10/11(일) 11:30 어른 6·아기 3 자리(룸), 유아의자 3개'],
         ['t2b', '장흥리식당 네이버 예약 — 10/10(토) 10:30 어른 6·아기 3, 유아의자 3개 · 토요일 오픈 시각 확인'],
         ['t3', '더라두 — 10/11(일) 영업시간·아기 동반 되는지 (안 되면 옆 아이나 카페)'],
         ['t4', '하나로 화도점(032-937-1181) — 토요일 마감·얼음 판매'],
-        ['t5', '호스트에게 — 10월에도 자쿠지 되는지(리스팅엔 "여름철")·아기 사용, 보드게임 종류(젠가?), 집게·가위, 아기침대'],
         ['t5b', '10/8~9 e-gen에서 강화군 10/11(일) 문 연 약국 확인 · 한글날 연휴 교통 전망 확인'],
-        ['t6', '아가 단체복 — 코스트코(10/7)에 할로윈 포인트 옷 3벌이 없으면 주문 (금요일까지 도착하는 것으로)'],
-        ['t7', '단톡방에 이 페이지 링크 + 홈 화면에 추가'],
-        ['t8', '10/9 밤 — 아이스팩 얼리기, 냉동한 고기는 냉장실로'],
-        ['t9', '10/10 아침 — 고기·아이스팩 아이스박스로, 08:30 출발']
+        ['t6', '아가 단체복 — 10/9 코스트코에 할로윈 포인트 옷 3벌이 없으면 다른 데서 (토요일 아침 전까지)'],
+        ['t7', '단톡방에 이 페이지 링크 + 홈 화면에 추가']
       ] }
     ] },
-    { id: 'costco', title: '🛒 코스트코', sub: '10/7(수) · 어른 6(꽤 마심) + 아기 3 · 저녁 1번 + 아침 1번', note: '고기는 **소비기한 10/10 이후** 팩으로. 아니면 산 날 냉동 → 10/9 밤 냉장 해동.', groups: [
+    { id: 'costco', me: true, title: '🛒 코스트코', sub: '10/9(금) 아침 · 어른 6(꽤 마심) + 아기 3 · 저녁 1번 + 아침 1번', groups: [
       { name: '고기 (합계 2.5~3kg)', items: [
         ['c1', '돼지 목살 1팩 (~1.5kg)'],
-        ['c2', '소고기 1팩 (~1.2~1.5kg) — (미정) 부위 고민 중 · 아기 몫은 부드러운 부위로'],
+        ['c2', '소고기 1팩 (~1.2~1.5kg) — (미정) 부위 고민 중'],
         ['c3', '소시지 1팩'],
-        ['c4', '(미정) 냉동 새우 — 사면 어른만 · 아기가 처음 먹는 거면 아기는 X']
+        ['c4', '(미정) 냉동 새우']
       ] },
       { name: '아기 공용', items: [
         ['c5', '(미정) 고구마 (호일 숯불 구이) — 달수 같은 소포장이면 코스트코, 대용량뿐이면 하나로'],
@@ -645,7 +640,6 @@ const TRIP = {
       { name: '숯 · 소모품 · 게임', items: [
         ['c15', '**숯 1봉** — 코코넛 숯(동글동글한 브리켓) · 불붙는 데 오래 걸리지만 연기 적고 오래 타요 {?재고·용량}'],
         ['c17', '키친타월 · 물티슈 · 호일 · 지퍼백 · 큰 쓰레기봉투'],
-        ['c18', '아이스팩 (집에 아이스박스 없으면 하나)'],
         ['c20', '(선택) 아동복 코너 — 9~26개월 사이즈로 같은 디자인·할로윈 포인트 옷 3벌이 있으면 단체복 해결 {?사이즈·재고}']
       ] }
     ] },
@@ -677,7 +671,6 @@ const TRIP = {
         ['f4', '애착 이불·인형 (낯선 데서 재우기)'],
         ['f5', '해열제 · 체온계 · 상비약'],
         ['f6', '유모차 · 겉옷 (저녁 바베큐 쌀쌀)'],
-        ['f7', '아이스박스 (고기 실은 집)'],
         ['f8', '단체복 · 휴대폰 거치대']
       ] }
     ] }
@@ -748,7 +741,7 @@ const TRIP = {
       ['p6', '(선택) 용준이 첫돌(10/2) 기념 미니 케이크 한 컷']
     ]
   },
-  splitQuick: [['숙소비', 0], ['코스트코', 0], ['바베큐 사용료', 20000], ['자쿠지', 30000], ['아점', 0], ['카페', 0], ['당일 장보기', 0], ['편의점', 0]],
+  splitQuick: [['숙소비', 0], ['코스트코', 0], ['바베큐 사용료', 20000], ['아점', 0], ['카페', 0], ['당일 장보기', 0], ['편의점', 0]],
   lat: 37.62, lon: 126.42,
   /* 날씨 타일의 "그 시각 기온" — [이름표, 시각] (예보에 시간별 기온이 있을 때만 보여요) */
   wxAt: {
@@ -761,7 +754,7 @@ const TRIP = {
 <script>
 (function(){
 'use strict';
-var BUILD = '10/8 16:50';
+var BUILD = '10/8 19:49';
 var NS = 'ghcamp26:';
 var TZ = 'Asia/Seoul';
 
@@ -770,6 +763,10 @@ function $(s, r){ return (r || document).querySelector(s); }
 function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
 function load(k, d){ try { var v = localStorage.getItem(NS + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
 function save(k, v){ try { localStorage.setItem(NS + k, JSON.stringify(v)); } catch (e) {} }
+/* 출발 전 할 일·코스트코(me: true)는 주소 끝에 ?me 를 붙여 한 번 연 폰에서만 보여요 (?notme 로 해제) — 화면에서만 숨김, 소스엔 그대로 */
+(function(){ var q = location.search; if (/[?&]me\b/.test(q) || /[?&]notme\b/.test(q)){ save('me', !/notme/.test(q)); try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} } })();
+function isMe(){ return load('me', false) === true; }
+function shopLists(){ return TRIP.shop.filter(function(l){ return !l.me || isMe(); }); }
 function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 /* {?} → 확인 필요 배지, {?메모} → 배지에 메모, **굵게** */
 function rich(s){
@@ -888,12 +885,12 @@ function renderTL(){
 function renderHero(){
   var st = nowState(), h = '', now = Date.now(), today = kstDate(now);
   if (st.phase === 'before'){
-    var dd = dayDiff(today, TRIP.start), d0 = TRIP.days[0], left = listLeft('todo');
+    var dd = dayDiff(today, TRIP.start), d0 = TRIP.days[0], left = isMe() ? listLeft('todo') : 0;
     h = th('출발 전', '', true) + '<article class="card now"><div class="meta"><span class="tag now">' + (dd > 0 ? 'D-' + dd : 'D-DAY') + '</span>' +
       '<span class="time">' + md(TRIP.start) + '(' + d0.label + ') 출발</span></div>' +
       '<h2 class="now-title">' + (dd > 0 ? dd + '일 남았어요' : '오늘 출발해요!') + '</h2>' +
       '<ul class="pts">' + d0.items.slice(0, 2).map(function(it){ return '<li><b class="num">' + it.t + '</b> ' + rich(it.title) + '</li>'; }).join('') + '</ul>' +
-      '<div class="acts"><button class="btn btn--pri" type="button" data-go="shop">' + (left ? '할 일 ' + left + '개 남음' : '할 일 다 했어요 ✓') + '</button>' +
+      '<div class="acts"><button class="btn btn--pri" type="button" data-go="shop">' + (!isMe() ? '챙길 것 보기' : left ? '할 일 ' + left + '개 남음' : '할 일 다 했어요 ✓') + '</button>' +
       '<button class="btn btn--sec" type="button" data-day="0">1일차 일정</button></div></article>';
   } else if (st.phase === 'during'){
     var c = st.cur, n = st.next, p = c.place ? TRIP.places[c.place] : null, cm = c.memo || [];
@@ -940,7 +937,8 @@ function renderTicker(){
   }
 }
 function nextTodo(){
-  var done = load('shop', {}), g = TRIP.shop[0].groups[0].items;
+  if (!isMe()) return null;
+  var done = load('shop', {}), g = listById('todo').groups[0].items;
   for (var i = 0; i < g.length; i++) if (!done[g[i][0]]) return g[i][1];
   return null;
 }
@@ -1010,7 +1008,7 @@ function listLeft(id){ var done = load('shop', {}); return listItems(listById(id
 /* 지금 볼 체크 목록: 출발 전 → 출발 전 할 일 / 1일차 체크인 전 → 당일 장보기 / 그 뒤 → 가족마다 챙길 것 */
 function miniListId(){
   var st = nowState();
-  if (st.phase === 'before') return 'todo';
+  if (st.phase === 'before') return isMe() ? 'todo' : 'fam';
   if (st.phase === 'during'){
     var ci = null; TRIP.days[0].items.forEach(function(it){ if (!ci && it.k === 'stay') ci = it; });
     if (ci && Date.now() < ci._at) return 'day';
@@ -1088,7 +1086,7 @@ function collectQ(){
     if (Array.isArray(v)) { v.forEach(function(x){ walk(x, label); }); return; }
     if (v && typeof v === 'object') Object.keys(v).forEach(function(k){ walk(v[k], v.name || v.title || label); });
   }
-  walk(TRIP.days, ''); walk(TRIP.places, ''); walk(TRIP.stay, '숙소'); walk(TRIP.sos, '응급'); walk(TRIP.shop, '');
+  walk(TRIP.days, ''); walk(TRIP.places, ''); walk(TRIP.stay, '숙소'); walk(TRIP.sos, '응급'); walk(shopLists(), '');
   var seen = {}; return out.filter(function(x){ if (seen[x]) return false; seen[x] = 1; return true; });
 }
 var deferredPrompt = null;
@@ -1110,7 +1108,7 @@ function renderInfo(){
 function ckRow(attr, id, html, on){ return '<label class="ck__i"><input type="checkbox" ' + attr + '="' + id + '"' + (on ? ' checked' : '') + '><span class="ck__box"></span><span class="ck__t">' + html + '</span></label>'; }
 function renderShop(){
   var done = load('shop', {});
-  $('#shopLists').innerHTML = TRIP.shop.map(function(l){
+  $('#shopLists').innerHTML = shopLists().map(function(l){
     var all = [], h = '';
     l.groups.forEach(function(g){
       h += '<div class="ck__g">' + (g.name ? '<h4>' + esc(g.name) + '</h4>' : '') + g.items.map(function(it){ all.push(it[0]); return ckRow('data-ck', it[0], rich(it[1]), done[it[0]]); }).join('') + '</div>';
@@ -1125,7 +1123,7 @@ function renderShop(){
 }
 function updateShopBadge(){
   var done = load('shop', {}), left = 0;
-  TRIP.shop.forEach(function(l){ if (l.id === 'fam') return; l.groups.forEach(function(g){ g.items.forEach(function(it){ if (!done[it[0]]) left++; }); }); });
+  shopLists().forEach(function(l){ if (l.id === 'fam') return; l.groups.forEach(function(g){ g.items.forEach(function(it){ if (!done[it[0]]) left++; }); }); });
   var b = $('#dockShop'); b.textContent = left; b.hidden = !left;
 }
 function refreshList(sec){

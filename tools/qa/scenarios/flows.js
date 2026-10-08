@@ -1,6 +1,13 @@
 /* 기능 흐름: 체크 저장·배지, 정산 계산·복사 텍스트, 비밀 게임 잠금·자동 오픈, 몰래 미션 겹침 없음, 라이어 한 판, 팀 뽑기(부부 갈라놓기) */
 module.exports = { parallel: 1, scenarios: [
-  { name: 'shop', now: '2026-10-06T21:00:00+09:00', steps: [
+  { name: 'shop-others', now: '2026-10-08T21:00:00+09:00', steps: [
+    { wait: 600, eval: `[!!document.querySelector('[data-list=todo]'), !!document.querySelector('[data-list=costco]'), document.querySelector('#shopTile [data-mini-list]').getAttribute('data-mini-list'), document.querySelector('#hero .btn--pri').textContent, document.querySelector('#dockShop').textContent].join(' | ')` },
+    { shot: 'f-shop-others.png' }
+  ] },
+  { name: 'shop-me-link', url: (process.env.QA_URL || 'http://localhost:8765/') + '?me', now: '2026-10-08T21:00:00+09:00', steps: [
+    { wait: 600, eval: `[location.search, localStorage.getItem('ghcamp26:me'), !!document.querySelector('[data-list=todo]'), !!document.querySelector('[data-list=costco]'), document.querySelector('#shopTile [data-mini-list]').getAttribute('data-mini-list')].join(' | ')` }
+  ] },
+  { name: 'shop', ls: { 'ghcamp26:me': 'true' }, now: '2026-10-06T21:00:00+09:00', steps: [
     { wait: 600, eval: `document.querySelector('#dock [data-view=shop]').click(); document.querySelector('#dockShop').textContent` },
     { eval: `document.querySelector('input[data-ck=t1]').click(); document.querySelector('input[data-ck=c1]').click(); [document.querySelector('#dockShop').textContent, document.querySelector('[data-list=costco] .ck__n').textContent, document.querySelector('#ticker').innerText.split(String.fromCharCode(10)).join(' / ')].join(' | ')` },
     { reload: true, wait: 800, eval: `[document.querySelector('input[data-ck=c1]').checked, localStorage.getItem('ghcamp26:shop')].join(' | ')` },

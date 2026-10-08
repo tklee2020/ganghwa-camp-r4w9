@@ -168,3 +168,4 @@ QA_URL=https://tklee2020.github.io/<저장소>/ npm run offline   # 서비스워
 - `shop` 목록에 `me: true`(todo·costco) → `?me` 를 붙여 한 번 연 폰(`NS+'me'`)에서만 보임, `?notme` 로 해제. 화면에서만 숨김(공개 저장소라 소스엔 남음).
   남의 폰: 출발 전 미니 목록은 `fam`, 헤더 버튼 "챙길 것 보기", 위 줄 "다음 할 일" 없음, 배지·`{?}` 목록도 보이는 목록만.
 - QA: `flows` 에 `shop-others`(숨김)·`shop-me-link`(`?me` → 저장·주소 정리) 추가, `shop` 은 `ls` 로 me 상태.
+- (같은 날 후속) 17:15 아가들 저녁 메모(아이별 고기·고구마 안내)도 삭제 — 제목만.

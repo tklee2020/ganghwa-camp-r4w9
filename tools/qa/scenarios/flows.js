@@ -7,6 +7,10 @@ module.exports = { parallel: 1, scenarios: [
   { name: 'shop-me-link', url: (process.env.QA_URL || 'http://localhost:8765/') + '?me', now: '2026-10-08T21:00:00+09:00', steps: [
     { wait: 600, eval: `[location.search, localStorage.getItem('ghcamp26:me'), !!document.querySelector('[data-list=todo]'), !!document.querySelector('[data-list=costco]'), document.querySelector('#shopTile [data-mini-list]').getAttribute('data-mini-list')].join(' | ')` }
   ] },
+  { name: 'shop-ver-tap', now: '2026-10-09T08:00:00+09:00', steps: [
+    { wait: 600, eval: `for (var i = 0; i < 5; i++) document.querySelector('#ver1').click(); [localStorage.getItem('ghcamp26:me'), !!document.querySelector('[data-list=costco]'), document.querySelector('#shopTile [data-mini-list]').getAttribute('data-mini-list'), document.querySelector('#toast').textContent].join(' | ')` },
+    { eval: `for (var i = 0; i < 5; i++) document.querySelector('#ver1').click(); [localStorage.getItem('ghcamp26:me'), !!document.querySelector('[data-list=costco]')].join(' | ')` }
+  ] },
   { name: 'shop', ls: { 'ghcamp26:me': 'true' }, now: '2026-10-06T21:00:00+09:00', steps: [
     { wait: 600, eval: `document.querySelector('#dock [data-view=shop]').click(); document.querySelector('#dockShop').textContent` },
     { eval: `document.querySelector('input[data-ck=t1]').click(); document.querySelector('input[data-ck=c1]').click(); [document.querySelector('#dockShop').textContent, document.querySelector('[data-list=costco] .ck__n').textContent, document.querySelector('#ticker').innerText.split(String.fromCharCode(10)).join(' / ')].join(' | ')` },

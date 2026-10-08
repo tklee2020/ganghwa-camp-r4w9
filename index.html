@@ -754,7 +754,7 @@ const TRIP = {
 <script>
 (function(){
 'use strict';
-var BUILD = '10/8 22:31';
+var BUILD = '10/9 07:52';
 var NS = 'ghcamp26:';
 var TZ = 'Asia/Seoul';
 
@@ -763,7 +763,8 @@ function $(s, r){ return (r || document).querySelector(s); }
 function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
 function load(k, d){ try { var v = localStorage.getItem(NS + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
 function save(k, v){ try { localStorage.setItem(NS + k, JSON.stringify(v)); } catch (e) {} }
-/* 출발 전 할 일·코스트코(me: true)는 주소 끝에 ?me 를 붙여 한 번 연 폰에서만 보여요 (?notme 로 해제) — 화면에서만 숨김, 소스엔 그대로 */
+/* 출발 전 할 일·코스트코(me: true)는 주소 끝에 ?me 를 붙여 한 번 연 폰에서만 보여요 (?notme 로 해제) — 화면에서만 숨김, 소스엔 그대로.
+   링크가 다른 브라우저(앱 안 창)로 열리는 경우를 위해 "앱 버전" 글자를 5번 연달아 눌러도 켜고 꺼요 */
 (function(){ var q = location.search; if (/[?&]me\b/.test(q) || /[?&]notme\b/.test(q)){ save('me', !/notme/.test(q)); try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} } })();
 function isMe(){ return load('me', false) === true; }
 function shopLists(){ return TRIP.shop.filter(function(l){ return !l.me || isMe(); }); }
@@ -1289,9 +1290,15 @@ function syncThemeColor(){
 }
 
 /* ---------- 이벤트 ---------- */
+var verTaps = 0, verLast = 0;
 document.addEventListener('click', function(e){
   var t = e.target.closest ? e.target : e.target.parentNode, b;
   if ((b = t.closest('#dock button'))) { show(b.getAttribute('data-view')); return; }
+  if ((b = t.closest('#ver1, .foot'))) {
+    var nowT = Date.now(); verTaps = nowT - verLast < 1500 ? verTaps + 1 : 1; verLast = nowT;
+    if (verTaps >= 5){ verTaps = 0; save('me', !isMe()); renderShop(); renderShopTile(); renderHero(); renderTicker(); toast(isMe() ? '내 목록 켜짐 · 할 일·코스트코가 보여요' : '내 목록 꺼짐'); }
+    return;
+  }
   if ((b = t.closest('[data-go]'))) { var g = b.getAttribute('data-go'); if (g === 'now') goNow(); else if (g === 'sos') goSOS(); else show(g); return; }
   if ((b = t.closest('[data-ev]'))) { toggleEv(b); return; }
   if ((b = t.closest('#tlAll'))) { allOpen = !allOpen; openSet = {}; renderTL(); return; }

@@ -19,9 +19,11 @@ module.exports = { parallel: 1, scenarios: [
   ] },
   { name: 'split', steps: [
     { wait: 600, eval: `document.querySelector('#dock [data-view=split]').click(); 'ok'` },
-    { eval: `(function(){ function add(f,w,a){ document.querySelector('[data-payer='+f+']').click(); document.querySelector('#sWhat').value=w; document.querySelector('#sAmt').value=a; document.querySelector('#splitForm').dispatchEvent(new Event('submit',{cancelable:true})); }
-      add('yj','코스트코','412,350'); add('yj','숙소비','480000'); add('wj','아점','126000'); add('dh','카페','58000'); add('yj','바베큐 사용료','20000');
-      return document.querySelector('#result').innerText.split(String.fromCharCode(10)).join(' / '); })()` },
+    /* 확정 내역(TRIP.splitFinal)이 있으면: 적기 칸 숨김·지우기 버튼 없음·폰에 적어도 결과가 안 바뀜 */
+    { eval: `(function(){ var q=function(s){ return document.querySelectorAll(s).length; }, NL=String.fromCharCode(10);
+      document.querySelector('#sWhat').value='딴 돈'; document.querySelector('#sAmt').value='99000'; document.querySelector('#splitForm').dispatchEvent(new Event('submit',{cancelable:true}));
+      return 'formHidden=' + document.querySelector('#sFormTile').hidden + ' del=' + q('#ledger .del') + ' clear=' + q('#clearSplit') + ' rows=' + q('#ledger li') + ' ' + document.querySelector('#ledN').textContent +
+        ' | ' + document.querySelector('#result').innerText.split(NL).join(' / ') + ' | home: ' + document.querySelector('#splitTile').innerText.split(NL).join(' / '); })()` },
     { shot: 'f-split.png', full: true }
   ] },
   /* 비밀 게임 잠금(TRIP.games.openISO 10/10 20:00): 전엔 자물쇠만, 1분 타이머가 열어 주고, 자물쇠를 눌러도 열려요 */
